@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Getting started"
+author: "Jose"
 date: 2019-02-17
 ---
 
