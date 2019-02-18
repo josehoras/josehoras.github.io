@@ -11,5 +11,5 @@ More generally also, I will be journaling here about my current project learning
 
 More to come...
 
-<img src="https://github.com/josehoras/josehoras.github.io/blob/master/assets/141px-Om_symbol.svg.png"
+<img src="https://github.com/josehoras/josehoras.github.io/blob/master/assets/141px-Om_symbol.svg"
 	title="Loading screen" width="200" height="200" />
