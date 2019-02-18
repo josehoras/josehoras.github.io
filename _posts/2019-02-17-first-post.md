@@ -1,10 +1,9 @@
 ---
 layout: post
 title: "Getting started"
+author: "Jose"
 date: 2019-02-17
 ---
-
-# Getting started 
 
 Today I'm starting this blog. I'll use this space to describe in more detail the repositories I'll maintain on my GitHub. 
 
