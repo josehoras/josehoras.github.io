@@ -8,18 +8,16 @@
     <div class="wrapper">
       <header>
         <h1><a href="{{ "/" | absolute_url }}">Jose Horas</a></h1>
-        
-        {% if site.logo %}
-          <img src="{{site.logo | relative_url}}" alt="Logo" />
-        {% endif %}
 
-        <p>{{ site.description | default: site.github.project_tagline }}</p>
+        <p>{{ site.description}}</p>
 
-        {% if site.github.is_user_page %}
         <p class="view">
           <img src="assets/GitHub-Mark-32px.png" alt="w" width=50% height=50% >
-          <a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
-        {% endif %}
+          <a href="{{ site.github.owner_url }}">View My GitHub Profile</a>
+        </p>
+
+      <img src="https://github.com/josehoras/josehoras.github.io/blob/master/assets/141px-Om_symbol.svg.png"
+	              title="Loading screen" width="200" height="200" />
       </header>
 
       <section>
