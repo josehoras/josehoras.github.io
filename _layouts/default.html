@@ -2,30 +2,19 @@
 <html lang="{{ site.lang | default: "en-US" }}">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/my_stylesheet.css">
+    <link href="/css/my_stylesheet.css" rel="stylesheet">
   </head>
   <body>
     <div class="wrapper">
-      <header>
-        <h1><a href="{{ "/" | absolute_url }}">Jose Horas</a></h1>
-        <p>{{ site.description}}</p>
+      {% include header.html %}
 
-      	<img src="https://github.com/josehoras/josehoras.github.io/blob/master/assets/141px-Om_symbol.svg" 
-	     width="200" height="200" />
-      </header>
+      <div class="section">
+        <div class="in-container">
+          {{ content }}
+        </div>
+      </div>
 
-      <section>
-        <p>this is section</p>
-        {{ content }}
-      </section>
-      
-      <footer>
-        <p><small>Hosted on GitHub Pages</small></p>
-        <p class="view">
-          <img src="assets/GitHub-Mark-32px.png" alt="w" width="16" height="16" >
-          <a href="{{ site.github.owner_url }}">Jose Horas</a>
-        </p>
-      </footer>
+      {% include footer.html %}
     </div>
 
     {% if site.google_analytics %}
@@ -38,6 +27,6 @@
         ga('send', 'pageview');
       </script>
     {% endif %}
-    
+
   </body>
 </html>
