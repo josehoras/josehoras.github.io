@@ -4,9 +4,14 @@
 }
 
 body{
-  height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
+
+a         { color: #037ffd; text-decoration: none; }
+a:hover   { color: #000; text-decoration: underline; }
+a:visited { color: #0057af; }
+
+/* h1 { font-size: 100%; font-weight: 100; } */
 
 .wrapper{
   display:flex;
@@ -16,23 +21,30 @@ body{
 
 .header{
   padding: 20px;
+  /* height: 20px; */
   background: #fafafa;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 4px solid #e8e8e8;
+  border-top: 4px solid #e8e8e8;
 }
 .in-container{
   max-width: 700px;
-  border:solid;
+  /* border:solid; */
   margin-left: auto;
   margin-right: auto;
-  padding:30px 30px;
+  padding-left: 30px;
+  padding-top: 10px;
 }
+
 .header-title{
+  /* float: left; */
+  padding-left: 10px;
+  font-size: 40px;
   display: inline;
   /* padding-left: 10px; */
 }
 .navigation{
   float: right;
-  padding-top: 10px;
+  padding-top: 15px;
 }
 .nav-item{
   padding-left: 20px;
@@ -45,9 +57,52 @@ body{
 }
 
 .posts { list-style-type: none; }
-.posts li { margin-bottom: 10px; }
-.posts .post-date {display: block;}
-.posts .post-link {font-size: 20px;}
+.posts li {
+  padding: 20px 10px;
+  margin-bottom: 30px;
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  /* border: solid; */
+}
+.post-date {display: block;}
+.post-link {font-size: 25px;}
+.post-header{padding-left: 10px;}
+.post-body {
+  /* font-size: 25px; */
+  padding-left: 10px;
+  padding-top: 15px;
+  line-height: 1.5;
+}
+.post-body > * { margin: 20px 0; }
+.post-body blockquote {
+  border-left: 4px solid #e8e8e8;
+  padding-left: 20px;
+  font-size: 18px;
+  opacity: .6;
+  letter-spacing: -1px;
+  font-style: italic;
+  margin: 30px 0;
+}
+.post-body pre, code {
+  border: 1px solid #d5d5e9;
+  background-color: #eef;
+  padding: 8px 12px;
+  border-radius: 3px;
+  font-size: 15px;
+  overflow:auto;
+}
+
+.post-body code {
+  padding: 1px 3px;
+}
+
+.post-body pre code {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.post-body ul, ol { margin-left: 2em;}
 
 
 .footer{
