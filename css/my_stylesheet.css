@@ -5,12 +5,14 @@
 
 body{
   font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
   background: #fdfdfd;
+  /* background: url("../../../assets/141px-Om_symbol.svg") repeat; */
 }
 
-a         { color: #037ffd; text-decoration: none; }
+a         { color: #005ACC; text-decoration: none; }
 a:hover   { color: #000; text-decoration: underline; }
-a:visited { color: #0057af; }
+a:visited { color: #346593; }
 
 /* h1 { font-size: 100%; font-weight: 100; } */
 
@@ -23,12 +25,16 @@ a:visited { color: #0057af; }
 .header{
   padding: 10px;
   /* height: 20px; */
-  background: #f5f6f7;
-  border-bottom: 4px solid #642E73;
-  border-top: 4px solid #e8e8e8;
+  background: #F3F3F3;
+  border-bottom: 3px solid #000;
+  /* border-top: 4px solid #e8e8e8; */
 }
+
+.header a{  color: #2E3436; text-decoration: none; }
+.header a:hover   { color: #2E3436; text-decoration: underline; }
+
 .in-container{
-  max-width: 700px;
+  max-width: 800px;
   /* border:solid; */
   margin-left: auto;
   margin-right: auto;
@@ -62,8 +68,9 @@ a:visited { color: #0057af; }
 .posts li {
   padding: 20px 10px;
   margin-bottom: 30px;
-  background: #F5F8FA;
-  border: 1px solid #e8e8e8;
+  background: #fdfdfd;
+  opacity: 0.95;
+  border: 3px solid #e8e8e8;
   border-radius: 20px;
   /* border: solid; */
 }
@@ -107,6 +114,11 @@ a:visited { color: #0057af; }
 
 .post-body ul, ol { margin-left: 2em;}
 
+.post_img {
+  color: #555;
+  font-size: 14px;
+  text-align: center;
+}
 
 .footer{
   /* position:sticky; bottom: 10px; */
