@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Intro to Neural Nets"
+title: "Introduction to Neural Nets"
 author: "Jose"
 date: 2019-04-12
 ---
