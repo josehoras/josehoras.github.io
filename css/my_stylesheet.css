@@ -66,7 +66,7 @@ a:visited { color: #346593; }
 
 .posts { list-style-type: none; }
 .posts li {
-  padding: 20px 10px;
+  padding: 10px 10px;
   margin-bottom: 30px;
   background: #fdfdfd;
   opacity: 0.95;
@@ -74,14 +74,21 @@ a:visited { color: #346593; }
   border-radius: 20px;
   /* border: solid; */
 }
-.post-date {display: block;}
+
 .post-link {font-size: 25px;}
+.post-excerpt {
+  margin-top: 3px;
+}
+.post-date {
+  display: block;
+  margin-top: 15px;
+}
+
 .post-header{padding-left: 10px;}
 .post-body {
   /* font-size: 25px; */
   padding-left: 10px;
   padding-top: 15px;
-  line-height: 1.5;
 }
 .post-body > * { margin: 20px 0; }
 .post-body blockquote {
@@ -123,9 +130,9 @@ a:visited { color: #346593; }
 .footer{
   /* position:sticky; bottom: 10px; */
   padding: 20px;
-  background: #fafafa;
+  background: #FDFDFD;
   text-align: center;
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid #000;
 }
 
 table {
