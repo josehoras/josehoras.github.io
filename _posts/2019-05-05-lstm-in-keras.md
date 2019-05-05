@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "LSTM in Keras"
-excerpt: "Implementation of a LSTM recurrent neeural network using Keras."
+excerpt: "Implementation of a LSTM recurrent neural network using Keras."
 author: "Jose"
 date: 2019-05-05
 ---
