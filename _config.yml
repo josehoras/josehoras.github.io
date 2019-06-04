@@ -1,5 +1,9 @@
+title: Jose Horas
+description: Blog about Artificial Intelligence and Neural Nets
 url: "https://josehoras.github.io/"
+permalink: pretty
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-paginate
   - jekyll-seo-tag
