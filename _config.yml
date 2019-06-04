@@ -1,12 +1,5 @@
-#theme: jekyll-theme-minimal
-# Build settings
-# markdown: kramdown
-# permalink: pretty
-#
-# highlighter: rouge
-# kramdown:
-#   input: GFM
-#   auto_ids: true
-# syntax_highlighter: rouge
+url: "https://josehoras.github.io/"
 plugins:
+  - jekyll-feed
+  - jekyll-sitemap
   - jekyll-seo-tag
