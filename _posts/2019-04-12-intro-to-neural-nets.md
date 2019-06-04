@@ -24,7 +24,7 @@ Imagine you want a computer to perform a task, say recognize a cat from a pengui
 
 Same with the rules of chess. However, while there can be unlimited cases of cat pictures, chess is a more delimited problem. After you describe the pieces and sit will chess experts to describe the best chess tactics, you more or less have it. So, it makes sense that programs could beat Kasparov in 1997, and fifteen years later they still could not distinguish an object in an image as well as any child can do.
 
-Of course there are a lot of programers and they have been busy coding and coming up with clever algorithms. So more and more tasks have been automatized and you would think eventually there will be a code for every single task, at what point computers will finally be our overlords and enslave or kill us all. But the hype explosion we hear in the media about AI now is not because of this linear progression. It is because of new much powerful general purpose algorithms, and these are the **neural nets**.
+Of course there are a lot of programmers and they have been busy coding and coming up with clever algorithms. So more and more tasks have been automatized and you would think eventually there will be a code for every single task, at what point computers will finally be our overlords and enslave or kill us all. But the hype explosion we hear in the media about AI now is not because of this linear progression. It is because of new much powerful general purpose algorithms, and these are the **neural nets**.
 
 Now, what I find fascinating about neural nets is that the math they are based on is not that difficult to understand. Meanwhile I could not describe above in any detail the algorithms that IBM used to beat Kasparov at chess, because they are so complex and I don't really know them. To me, there are four pieces to understand:
 
@@ -38,7 +38,7 @@ So now that you have one number you say (quite randomly) that if you get one tha
 <img src="../../../assets/intro-to-neural-nets/box.png" width="700" height="400" /> 
 </div>
 
-* Now, the second piece you need is a measure of how wrong the prediction is. As the probability the neural net gave to penguin is 80%, if it is actually a penguin you were only 20% wrong, and is it is a cat you were 80% wrong. The way you got to these values (the operations the net did) is just a function. This is a relatively easy funtion (called the **loss function**), because those millions of numbers are to a computer like a short equation to you.
+* Now, the second piece you need is a measure of how wrong the prediction is. As the probability the neural net gave to penguin is 80%, if it is actually a penguin you were only 20% wrong, and is it is a cat you were 80% wrong. The way you got to these values (the operations the net did) is just a function. This is a relatively easy function (called the **loss function**), because those millions of numbers are to a computer like a short equation to you.
 	<br> <br/>
 * The third part of the algorithm is to find a way to change a little those millions of numbers, so that you would have been a little less wrong. 
 	<br> <br/>
@@ -64,9 +64,9 @@ There is an analogy to be done between this algorithm and the way the brain work
 
 It happened long ago, actually. The first models based on the neuron analogy go back to the 40's. On 1975 that third piece I talked about going back along yours operations to know how much to change your numbers (it's called **Backpropagation**) was fully formalized. And in the 90's [Yann LeCun](https://en.wikipedia.org/wiki/Yann_LeCun) used this algorithm to develop a system to recognize handwritten numbers that was widely used to process bank checks.
 
-However, for most applications, this algorithms where kind of a dissapointment in you don't use really a lot of numbers to adjust. So, computing power was an important bottleneck that got researchers quite unmotivated for many years (these periods are even officially named [AI winters](https://en.wikipedia.org/wiki/AI_winter).
+However, for most applications, this algorithms where kind of a disappointment in you don't use really a lot of numbers to adjust. So, computing power was an important bottleneck that got researchers quite unmotivated for many years (these periods are even officially named [AI winters](https://en.wikipedia.org/wiki/AI_winter).
 
-A second bottleneck was data. Maybe you don't need millions, but it's not so easy to have thousand of cat and penguin images (and dog, horses, faces, and what not), that are correctly labelled, so that our algorithm can learn from them. People had to do it the labelling manually first. You can hire some students for labelling the numbers for the LeCun system, and other images. Datasets were slowly growing that way, but then Internet came to help. At some point you had billions of people tagging their friends of their Facebook post and uploading the picture of the Linguine they had for dinner, for example, and basically doing the work for you.
+A second bottleneck was data. Maybe you don't need millions, but it's not so easy to have thousand of cat and penguin images (and dog, horses, faces, and what not), that are correctly labeled, so that our algorithm can learn from them. People had to do it the labeling manually first. You can hire some students for labeling the numbers for the LeCun system, and other images. Datasets were slowly growing that way, but then Internet came to help. At some point you had billions of people tagging their friends of their Facebook post and uploading the picture of the Linguine they had for dinner, for example, and basically doing the work for you.
 
 And of course merit has to go to the researchers that stand through and survived the AI winters. They were ready to rekindle the fire when the conditions were good. Particularly, several of them found refuge in the University of Toronto. Here is a very interesting [documentary](https://www.bloomberg.com/news/videos/2018-05-23/hello-world-canada-the-rise-of-ai-video) about that.
 
@@ -86,14 +86,14 @@ This is the other detail I was not very exact in the pub introduction. You can h
 
 This second caveat completes the neuron analogy, because neurons are organized in layers. A neuron gets its inputs from other neurons through its dendrites, and send its output to other neuron through its axon.
 
-Now that you have the basic components you can let your imagination run wild, specially if you are a researcher, and put more boxes in your network and apply different filters and operations to them. If you go deep and have more than 10 or 20 boxes, you will have a deep neural network, And you will be happy to see that, up to a certain depth, your predictions get really very good. The different ways you dispose your boxes, or matrices, of numbers will give you different network architechtures. And some architectures will work better for some tasks than others. Here is a list of some important neural network architectures:
+Now that you have the basic components you can let your imagination run wild, specially if you are a researcher, and put more boxes in your network and apply different filters and operations to them. If you go deep and have more than 10 or 20 boxes, you will have a deep neural network, And you will be happy to see that, up to a certain depth, your predictions get really very good. The different ways you dispose your boxes, or matrices, of numbers will give you different network architectures. And some architectures will work better for some tasks than others. Here is a list of some important neural network architectures:
 
 * Convolutional neural networks
 * Recurrent neural networks
 * Generative adversarial networks (GANs)
 * Reinforcement learning
 
-I have the personal program to make a project myself on each of these arquitectures to understand them from the bottom up. As I finish each of them I'll try to share it and post an explanation of what is special about it. Wish me luck!
+I have the personal program to make a project myself on each of these architectures to understand them from the bottom up. As I finish each of them I'll try to share it and post an explanation of what is special about it. Wish me luck!
 
 
 

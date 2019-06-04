@@ -25,13 +25,13 @@ The three frameworks have different philosophies, and I wouldn't say one is bett
 
 You find this implementation in the file `keras-lstm-char.py` in the [GitHub repository](https://github.com/josehoras/LSTM-Frameworks).
 
-As in the other two implementations, the code contains only the logic fundamental to the LSTM architecture. I use the file `aux_funcs.py` to place functions that, being important to understant the complete flow, are not fundamental to the LSTM itself. These include functionality for loading the data file, pre-process the data by encoding each character into one-hot vectors, generate the batches of data that we feed to the neural network on training time, and plotting the loss history along the training. These functions are (mostly) reused in the TensorFlow and Python versions. I will not explain in detail these auxiliary functions, but the type of inputs that we give to the network and its format will be important.
+As in the other two implementations, the code contains only the logic fundamental to the LSTM architecture. I use the file `aux_funcs.py` to place functions that, being important to understand the complete flow, are not fundamental to the LSTM itself. These include functionality for loading the data file, pre-process the data by encoding each character into one-hot vectors, generate the batches of data that we feed to the neural network on training time, and plotting the loss history along the training. These functions are (mostly) reused in the TensorFlow and Python versions. I will not explain in detail these auxiliary functions, but the type of inputs that we give to the network and its format will be important.
 
 ## Data
 
-The full data to train on will be a simple text file. In the repository I uploaded the collection on Shakespeare works (~4 MB) and the Quixote (~1 MB) as examples. 
+The full data to train on will be a simple text file. In the repository I uploaded the collection on Shakespeare works (~4 MB) and the Quijote (~1 MB) as examples. 
 
-We will feed the model with squences of letters taken in order from this raw data. The model will make its prediction of what the next letter is going to be in each case. To train it will compare its prediction with the true targets. The data and labels we give the model have the form:
+We will feed the model with sequences of letters taken in order from this raw data. The model will make its prediction of what the next letter is going to be in each case. To train it will compare its prediction with the true targets. The data and labels we give the model have the form:
 
 <div class="post_img">
 <img src="../../../assets/lstm-recurrent-networks/data_batch.png" /> 
@@ -64,7 +64,7 @@ model = Model(inputs=inputs, outputs=probabilities)
 
 This model could be defined as well using the Sequential() method. However the Model() API gives the flexibility to reuse layers or parts of the model to define a second model, which I will do next to check the text generation that the model is able at every N iteration on the training process. 
 
-The network consists of one LSTM layer that process our inputs in a temporal sequence, and delivers hidden states of `hidden_dim` length. This second sequence of hidden states are passed through a Dense layer with softmax activation that converts each hidden state in a probability vector on same lenght as our `vocab_size`, or the number of characters in our dictionary. This represents the more likely output character `t` given all the previous input characters from `0` to `t-1`.
+The network consists of one LSTM layer that process our inputs in a temporal sequence, and delivers hidden states of `hidden_dim` length. This second sequence of hidden states are passed through a Dense layer with softmax activation that converts each hidden state in a probability vector on same length as our `vocab_size`, or the number of characters in our dictionary. This represents the more likely output character `t` given all the previous input characters from `0` to `t-1`.
 
 ## Optimization and training
 
@@ -85,11 +85,11 @@ To reduce this loss and optimize our predictions, Keras use internally a method 
 
 The next line `print(model.summary())` is self explanatory. In this summary you can see the model layers, their dimensionality, and number of parameters. It's very useful to check that the model is what you meant it to be.
 
-Finally `model.fit_generator()` does the actual training. We use the `fit_generator()` method because we provide the data using a Python generator function ( `data_feed`). Otherwise we could use the equivalent `fit()` method. We also define the amount of batches to be found in an epoch and the number of epochs we want to train. On each epoch the generator is resetted. So, if we define less batches per epoch than the full data for some reason, the data feed will not continue until the end on the next epoch, but will start from the beginning of the data again. We also set `shuffle` to false as we want Keras to keep the time dependency.
+Finally `model.fit_generator()` does the actual training. We use the `fit_generator()` method because we provide the data using a Python generator function ( `data_feed`). Otherwise we could use the equivalent `fit()` method. We also define the amount of batches to be found in an epoch and the number of epochs we want to train. On each epoch the generator is reset. So, if we define less batches per epoch than the full data for some reason, the data feed will not continue until the end on the next epoch, but will start from the beginning of the data again. We also set `shuffle` to false as we want Keras to keep the time dependency.
 
 ## Keras Callbacks
 
-Training will take a long time, depending on how much you want or need to train to see meaninful results. If we set `verbose=1` Keras provides information on how our training is doing. This is good, but I wanted to get something more done at the same time the model is training. To do that Keras let you define callbacks. These are functions that will be called when some condition is true. I have done that defining a class called `LossHistory()`. This class inherits from its parent class "Callback", a Keras class. It has two procedures that will be activated at the beginning of the training and after each batch has been processed.
+Training will take a long time, depending on how much you want or need to train to see meaningful results. If we set `verbose=1` Keras provides information on how our training is doing. This is good, but I wanted to get something more done at the same time the model is training. To do that Keras let you define callbacks. These are functions that will be called when some condition is true. I have done that defining a class called `LossHistory()`. This class inherits from its parent class "Callback", a Keras class. It has two procedures that will be activated at the beginning of the training and after each batch has been processed.
 
 ```
 class LossHistory(Callback):
@@ -116,7 +116,7 @@ Now, the method we use to sample a new text is the following. We input to the mo
 
 But this process still lack one important component. Doing as just explained each character will be predicted based on one input character. But the power of the recursive neural networks is to take into account the history of all previous characters to make its prediction. To do this the network saves two internal states (in a LSTM, just one in a regular RNN). These state will change on each loop iteration and, somehow, will keep the relevant information of all characters that the network has seen so far. So, to make the prediction we need to pass not just the last character, but also these two states for the network to know what has been going on so far.
 
-This two states are the reason we define a secon model for testing. In our first model we where passing long character sequences for training. Keras kept track of these states internally as it passed the sequence through the network. We didn't need to explicitly wory about them, but now we want them as output of each prediction step to pass it forward in the next prediction step. We need these states to be defined as input and outputs. This second model look like this:
+This two states are the reason we define a second model for testing. In our first model we where passing long character sequences for training. Keras kept track of these states internally as it passed the sequence through the network. We didn't need to explicitly worry about them, but now we want them as output of each prediction step to pass it forward in the next prediction step. We need these states to be defined as input and outputs. This second model look like this:
 
 ```
 state_input_h = Input(shape=(1, hidden_dim))

@@ -14,7 +14,7 @@ The goal of this post is not to explain the theory of recurrent networks. There 
 - Christopher Olah's [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
 - Stanford's [CS231n lecture](https://youtu.be/6niqTuYFZLQ)
 
-Instead in this post I want to give a more practical insight. I'm also doing the same, in two separate posts, for tensorFlow and Keras. The aim is to have the same program written in three different frameworks to highlight the similarities and differences between them. Also, it may make easier to learn one of the frameworks if you already know some of the others. 
+Instead in this post I want to give a more practical insight. I'm also doing the same, in two separate posts, for TensorFlow and Keras. The aim is to have the same program written in three different frameworks to highlight the similarities and differences between them. Also, it may make easier to learn one of the frameworks if you already know some of the others. 
 
 My starting point is Andrej Karpathy code [min-char-rnn.py](https://gist.github.com/karpathy/d4dee566867f8291f086), described in his post linked above. I first modified the code to make a LSTM out of it, using what I learned auditing the CS231n lectures (also from Karpathy). So, I started from pure Python, and then moved to TensorFlow and Keras. You may, however, come here after knowing TensorFlow or Keras, or having checked the other posts.
 
@@ -25,13 +25,13 @@ The three frameworks have different philosophies, and I wouldn't say one is bett
 
 You find this implementation in the file `lstm-char.py` in the [GitHub repository](https://github.com/josehoras/LSTM-Frameworks)
 
-As in the other two implementations, the code contains only the logic fundamental to the LSTM architecture. I use the file `aux_funcs.py` to place functions that, being important to understant the complete flow, are not part of the LSTM itself. These include functionality for loading the data file, pre-process the data by encoding each character into one-hot vectors, generate the batches of data that we feed to the neural network on training time, and plotting the loss history along the training. These functions are (mostly) reused in the TensorFlow and Keras versions. I will not explain in detail these auxiliary functions, but the type of inputs that we give to the network and its format will be important.
+As in the other two implementations, the code contains only the logic fundamental to the LSTM architecture. I use the file `aux_funcs.py` to place functions that, being important to understand the complete flow, are not part of the LSTM itself. These include functionality for loading the data file, pre-process the data by encoding each character into one-hot vectors, generate the batches of data that we feed to the neural network on training time, and plotting the loss history along the training. These functions are (mostly) reused in the TensorFlow and Keras versions. I will not explain in detail these auxiliary functions, but the type of inputs that we give to the network and its format will be important.
 
 ## Data
 
-The full data to train on will be a simple text file. In the repository I uploaded the collection on Shakespeare works (~4 MB) and the Quixote (~1 MB) as examples. 
+The full data to train on will be a simple text file. In the repository I uploaded the collection on Shakespeare works (~4 MB) and the Quijote (~1 MB) as examples. 
 
-We will feed the model with squences of letters taken in order from this raw data. The model will make its prediction of what the next letter is going to be in each case. To train it will compare its prediction with the true targets. The data and labels we give the model have the form:
+We will feed the model with sequences of letters taken in order from this raw data. The model will make its prediction of what the next letter is going to be in each case. To train it will compare its prediction with the true targets. The data and labels we give the model have the form:
 
 <div class="post_img">
 <img src="../../../assets/lstm-recurrent-networks/data_batch.png" /> 
@@ -57,7 +57,7 @@ After these function definitions we have the main body of the program. A pseudoc
 - Initialize model parameters (Wx, Wh, b, Why, by)
 - While loop
 	. Get next data batch
-	. (Test sample with current model every N iteractions)
+	. (Test sample with current model every N iterations)
 	. Forward pass
 	. Backward pass
 	. Gradient update
@@ -85,7 +85,7 @@ That can be represented in the following diagram:
 
 We apply two network operations: the LSTM forward pass and the dense transformation from the hidden states to our final scores.
 
-The `lstm_forward()` function will call `lstm_step_forward()` for each character in the input sequentially. The outputs of `lstm_step_forward()` are the hidden and cell states that the LSTM keeps to take into account all the previous inputs in the sequence. The hidden states, despite their name, are the external varibale that get passed to the dense layer to figure out the next character from them. The cell states are internal to the LSTM and give it the ability to keep or forget past information, avoiding the exploding or diminishing gradients problem present on simple RNNs.
+The `lstm_forward()` function will call `lstm_step_forward()` for each character in the input sequentially. The outputs of `lstm_step_forward()` are the hidden and cell states that the LSTM keeps to take into account all the previous inputs in the sequence. The hidden states, despite their name, are the external variable that get passed to the dense layer to figure out the next character from them. The cell states are internal to the LSTM and give it the ability to keep or forget past information, avoiding the exploding or diminishing gradients problem present on simple RNNs.
 
 We set the initial hidden state to zeros before the main loop. The initial cell state is set to zeros on each call of `lstm_forward()`, at the beginning of each sequence.
 
@@ -104,7 +104,7 @@ The interesting mathematics are contained in `lstm_step_forward()`. This is simp
     return next_h, next_c, cache
 ```
 
-Inside we begin with something similar to a dense layer connection, but with two inputs and two matrixes, the previous hidden state with matrix Wh, and our current character input x with Wx. And of course adding up a bias b. We obtain a vector four times the length of the hidden dimension that we divide into the four gates **i, f, o, g**. Finally we apply the LSTM equations to obtain the next hidden state and the next cell state.
+Inside we begin with something similar to a dense layer connection, but with two inputs and two matrices, the previous hidden state with matrix Wh, and our current character input x with Wx. And of course adding up a bias b. We obtain a vector four times the length of the hidden dimension that we divide into the four gates **i, f, o, g**. Finally we apply the LSTM equations to obtain the next hidden state and the next cell state.
 
 Don't worry now with all those variables we pass in the cache. They will be used in the backward pass.
 
@@ -147,7 +147,7 @@ The backward pass consists in applying the backpropagation method to obtain the 
 
 Basically we want first to know how should I change the scores in order to reduce my loss. The rate of change of the loss with regards to the change of the scores is given by derivative *dscores*. To understand the formula of dscores above, please see [this notes](http://cs231n.github.io/neural-networks-case-study/#grad)
 
-But still, we cannot just change the scores. We can just change our weights Why, by, Wx, ... So, we backpropagate the scores derivative through each operation we did on the forward pass until we get the derivatives of our weights. First we backpropagate throught the dense layer, which gives us the derivatives of our weights Why and by, as well as the derivative of the hidden states dh_states. The equations are a simple example of backpropagation (again, more info on [CS231n](http://cs231n.github.io/optimization-2/)), and they correspond to this backpropagation diagram:
+But still, we cannot just change the scores. We can just change our weights Why, by, Wx, ... So, we backpropagate the scores derivative through each operation we did on the forward pass until we get the derivatives of our weights. First we backpropagate through the dense layer, which gives us the derivatives of our weights Why and by, as well as the derivative of the hidden states dh_states. The equations are a simple example of backpropagation (again, more info on [CS231n](http://cs231n.github.io/optimization-2/)), and they correspond to this backpropagation diagram:
 
 <div class="post_img">
 <img src="../../../assets/lstm-recurrent-networks/back_affine.png" width="350" height="180"  /> 
@@ -161,7 +161,7 @@ Now, the same happens with dh_state; we cannot directly change it and must backp
 
 ## Gradient update
 
-After we have all the derivatives we can do the gradient update. Here I apply a simple gradient descent and I sustract to each parameter its derivative multiplied by a small constant, the learning rate.
+After we have all the derivatives we can do the gradient update. Here I apply a simple gradient descent and I subtract to each parameter its derivative multiplied by a small constant, the learning rate.
 
 ```
     for param, dparam in zip([Wx, Wh, Why, b, by], [dWx, dWh, dWhy, db, dby]):

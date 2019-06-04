@@ -25,13 +25,13 @@ The three frameworks have different philosophies, and I wouldn't say one is bett
 
 You find this implementation in the file `tf-lstm-char.py` in the [GitHub repository](https://github.com/josehoras/LSTM-Frameworks)
 
-As in the other two implementations, the code contains only the logic fundamental to the LSTM architecture. I use the file `aux_funcs.py` to place functions that, being important to understant the complete flow, are not part of the LSTM itself. These include functionality for loading the data file, pre-process the data by encoding each character into one-hot vectors, generate the batches of data that we feed to the neural network on training time, and plotting the loss history along the training. These functions are (mostly) reused in the pure Python and Keras versions. I will not explain in detail these auxiliary functions, but the type of inputs that we give to the network and its format will be important.
+As in the other two implementations, the code contains only the logic fundamental to the LSTM architecture. I use the file `aux_funcs.py` to place functions that, being important to understand the complete flow, are not part of the LSTM itself. These include functionality for loading the data file, pre-process the data by encoding each character into one-hot vectors, generate the batches of data that we feed to the neural network on training time, and plotting the loss history along the training. These functions are (mostly) reused in the pure Python and Keras versions. I will not explain in detail these auxiliary functions, but the type of inputs that we give to the network and its format will be important.
 
 ## Data
 
-The full data to train on will be a simple text file. In the repository I uploaded the collection on Shakespeare works (~4 MB) and the Quixote (~1 MB) as examples. 
+The full data to train on will be a simple text file. In the repository I uploaded the collection on Shakespeare works (~4 MB) and the Quijote (~1 MB) as examples. 
 
-We will feed the model with squences of letters taken in order from this raw data. The model will make its prediction of what the next letter is going to be in each case. To train it will compare its prediction with the true targets. The data and labels we give the model have the form:
+We will feed the model with sequences of letters taken in order from this raw data. The model will make its prediction of what the next letter is going to be in each case. To train it will compare its prediction with the true targets. The data and labels we give the model have the form:
 
 <div class="post_img">
 <img src="../../../assets/lstm-recurrent-networks/data_batch.png" /> 
@@ -76,7 +76,7 @@ dense_weights = tf.get_variable("out_w", shape=[hidden_dim, vocab_size])
 dense_bias = tf.get_variable("out_b", shape=[vocab_size])
 ```
 
-The "get_variable()" method will create and initialize new variables to contain the weights and biases of the model's dense layers. These are trainable variables that will be modified in the training process to improve the model's predictions. The LSTM layer also has trainable weights and biases, but they are internally defined by the class "LSTMCell()". Additionaly, we provide the initial hidden and cell states with our "init_state" placeholder. However we need to convert it to the correect format using the "LSTMStateTuple()" class.
+The "get_variable()" method will create and initialize new variables to contain the weights and biases of the model's dense layers. These are trainable variables that will be modified in the training process to improve the model's predictions. The LSTM layer also has trainable weights and biases, but they are internally defined by the class "LSTMCell()". Additionaly, we provide the initial hidden and cell states with our "init_state" placeholder. However we need to convert it to the correct format using the "LSTMStateTuple()" class.
 
 Finally we define the operations in our model with:
 
@@ -90,7 +90,7 @@ probabilities = tf.nn.softmax(logits, name="probabilities")
 
 Now, this is the step where I was not careful the with dimensions and took me a while to debug. In the recurrent operation command, "dynamic_rnn()", you have the option `time_mayor=True`, that tell TensorFlow in the input "x" the first dimension will be the temporal sequence, instead of the batch size. If you pass your input in the format (batch_size, seq_length, vocab_size), you have to set `time_mayor=False`, which is the default actually...
 
-The LSTM layer output is a sequence of states as long as our input sequence. Each of these states should predict the following character. These states are the input to the dense layer. We will now get rid of the batch dimension, that we know is only one. We collapse that dimention passing `h_states[:, 0, :]`.
+The LSTM layer output is a sequence of states as long as our input sequence. Each of these states should predict the following character. These states are the input to the dense layer. We will now get rid of the batch dimension, that we know is only one. We collapse that dimension passing `h_states[:, 0, :]`.
 
 We express these scores in probabilities, that is, we normalize the series of scores so that their sum is equal to one, with the softmax function.
 
@@ -109,7 +109,7 @@ As analogy to the program in pure Python in the previous section, we can say up 
 
 ## Optimization 
 
-The equivalent of our backward pass in pure Python is where TensorFlow really takes matters into its hands. Under the hood the way you optimize a model, to adjust to the ground truth inputs you feed, is to calculate the gradients of the loss with respect to the model parameters and use this values to modify these paramaters in a way the loss will be minimized a little on each loop iteration. 
+The equivalent of our backward pass in pure Python is where TensorFlow really takes matters into its hands. Under the hood the way you optimize a model, to adjust to the ground truth inputs you feed, is to calculate the gradients of the loss with respect to the model parameters and use this values to modify these parameters in a way the loss will be minimized a little on each loop iteration. 
 
 If you haven't really understood the last sentence and you don't care now much the mathematical details, that's totally fine. TensorFlow will do it for you with two lines:
 
@@ -160,7 +160,7 @@ Next we get the next batch of inputs and targets from the Python generator.
 
 And the magic happens in `sess.run([variables], feed_dict={...})`. The first input, [variables], tells TensorFlow the variables within our model that we want it to calculate. The second input, feed_dict={...}, are the inputs to feed the model, our placeholders above, inputs, targets, and initial states.
 
-On each loop, calculating "training" will mean that we perform a gradient descent step. The result of this will be reflected in the variable loss, that we also calculate and keep on "l" and the correponding loss series "loss_hist", and "smooth_loss". We will also get the final state on this batch as output from `sess.run()`, and keep it on the "_current_state" variable to feed it back in the next loop cycle.
+On each loop, calculating "training" will mean that we perform a gradient descent step. The result of this will be reflected in the variable loss, that we also calculate and keep on "l" and the corresponding loss series "loss_hist", and "smooth_loss". We will also get the final state on this batch as output from `sess.run()`, and keep it on the "_current_state" variable to feed it back in the next loop cycle.
 
 This is all needed to define and train a recurrent LSTM network in TensorFlow. Of course we want to use the model and see how good it generates texts similar to the input data character by character. This is done in the `sample()`function
 
@@ -192,7 +192,7 @@ def sample(sample_length, session):
     return txt
 ```
 
-This time the input is a single encode character choosen randomly. Initial states are again initiated to zero and passed to the `sess.run()` as the "init_state" element in the "feed_dict={}". As we don't do any training here, the variables to calculate are the next states, and the probabilities vector to use to predict the next character. For the prediction we use the numpy function `random.choice()` that chooses elements in an array based on assigned probabilities. If we just choose the maximal probability the texts turn out with less variability and less interesting.
+This time the input is a single encode character chosen randomly. Initial states are again initiated to zero and passed to the `sess.run()` as the "init_state" element in the "feed_dict={}". As we don't do any training here, the variables to calculate are the next states, and the probabilities vector to use to predict the next character. For the prediction we use the numpy function `random.choice()` that chooses elements in an array based on assigned probabilities. If we just choose the maximal probability the texts turn out with less variability and less interesting.
 
 Note that here we use the probabilities variable for the first time. We didn't really need it in the training because the function `tf.nn.softmax_cross_entropy_with_logits_v2()` takes the logits as inputs and calculates the softmax distribution itself. We defined it just to use it here. 
 

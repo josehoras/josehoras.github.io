@@ -27,7 +27,7 @@ So, this is the way to go. But as I said, it is not straightforward. I will walk
 * Pull a TensorFlow Docker image
 * Create a new image for your program with a Dockerfile
 
-And additionally twopoint that were quite important for me:
+And additionally two points that were quite important for me:
 
 - Set up the tweaks I needed for my program: Bind mounts, and Matplotlib
 - Run your container in PyCharm
@@ -72,7 +72,7 @@ In the last step we test that the installation works with the command:
 ~$ docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi
 ```
 
-The first part of this command, `docker run –runtime=nvidia`, tells Docker to use the CUDA libraries. If we skip `–runtime=nvidia`, Docker alone will not be able to run the imega. We can also use `nvidia-docker run` and it will work too.
+The first part of this command, `docker run –runtime=nvidia`, tells Docker to use the CUDA libraries. If we skip `–runtime=nvidia`, Docker alone will not be able to run the image. We can also use `nvidia-docker run` and it will work too.
 
 The second part tells Docker to use an image (or download it if it doesn’t exist locally) and run it, creating a container. It runs the command `nvidia-smi` on this container. The `–rm` flag tells Docker to delete the container after it has run.
 
@@ -81,7 +81,7 @@ Now that you have Docker, you can download, or pull, the images you need from th
 
 `~$ docker pull tensorflow/tensorflow:latest-gpu-py3`
 
-Now that we have the Tensorflow image and the Docker wrapper for CUDA 9.0, we will create another, personalized, image to run our program.
+Now that we have the TensorFlow image and the Docker wrapper for CUDA 9.0, we will create another, personalized, image to run our program.
 
 ## Create a new image for your program with a Dockerfile
 This process is described [here](https://docs.docker.com/get-started/part2/). I will summarize it in four steps:
