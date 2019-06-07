@@ -1,6 +1,7 @@
-title: Jose Horas
-description: Blog about Artificial Intelligence and Neural Nets
-url: "https://josehoras.github.io/"
+title: Jose Horas blog about Neural Nets
+description: Convolutional Nets, LSTM, Reinforcement Learning
+#url: "https://josehoras.github.io/"
+url: "Jose Horas"
 permalink: pretty
 plugins:
   - jekyll-feed
