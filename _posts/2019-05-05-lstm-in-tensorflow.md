@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "LSTM in TensorFlow"
+title: "LSTM implementation in TensorFlow"
 excerpt: "Implementation of a LSTM recurrent neural network using TensorFlow."
 author: "Jose"
 date: 2019-05-05
