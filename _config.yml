@@ -2,7 +2,7 @@ title: Neural Nets Adventures
 description: Convolutional Nets, LSTM, Reinforcement Learning
 #url: "https://josehoras.github.io/"
 url: "Jose Horas"
-#permalink: pretty
+permalink: none
 plugins:
   - jekyll-feed
   - jekyll-sitemap
