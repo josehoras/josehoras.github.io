@@ -5,17 +5,22 @@
     <div class="in-container">
 
         <h1 class="header-title">
-          <a href="{{ "/" | absolute_url }}">Jose Horas</a>
+          <a href="/" >Jose Horas</a>
         </h1>
         <div class="navigation">
 
-            <span class="nav-item">
+            <!-- <span class="nav-item">
               {% for page in site.pages %}
                 {% if page.title %}
                   <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
                 {% endif %}
               {% endfor %}
+            </span> -->
+
+            <span class="nav-item">
+              <a href="/about/">About</a>
             </span>
+
             <span class="nav-item">
               <a href="../../../assets/josehorasCV_AI_pic.pdf">Professional CV</a>
             </span>
