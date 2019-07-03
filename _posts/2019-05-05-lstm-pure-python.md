@@ -35,7 +35,7 @@ The full data to train on will be a simple text file. In the repository I upload
 We will feed the model with sequences of letters taken in order from this raw data. The model will make its prediction of what the next letter is going to be in each case. To train it will compare its prediction with the true targets. The data and labels we give the model have the form:
 
 <div class="post_img">
-<img src="../../../assets/lstm-recurrent-networks/data_batch.png" />
+<img src="/../../../assets/lstm-recurrent-networks/data_batch.png" />
 </div>
 
 However, we don't give the model the letters as such, because neural nets operate with numbers and one-hot encoded vectors, not characters. To do this we give each character an unique number stored in the dictionary `char_to_idx[]`. Each of these number is a class, and the model will try to see in which class the next character belongs. A neural network outputs the probability for this of each class, that is, a vector of a length equal to the number of classes, or characters we have. Then it will compare this probability vector with a vector representing the true class, a one-hot encoded vector (that's its name) where the true class has probability 1, and all the rest probability 0. That's the kind of vectors we get from the encode function.
@@ -81,7 +81,7 @@ The code snippet responsible of the forward pass
 That can be represented in the following diagram:
 
 <div class="post_img">
-<img src="../../../assets/lstm-recurrent-networks/forward_diagram.png" width="550" height="170" />
+<img src="/../../../assets/lstm-recurrent-networks/forward_diagram.png" width="550" height="170" />
 </div>
 
 We apply two network operations: the LSTM forward pass and the dense transformation from the hidden states to our final scores.
@@ -143,7 +143,7 @@ The code snippet for the backward pass is:
 The backward pass consists in applying the backpropagation method to obtain the gradients of our model parameters. We will use these gradients in the next step to minimize the loss and improve those model parameters.
 
 <div class="post_img">
-<img src="../../../assets/lstm-recurrent-networks/backward_diagram.png" width="550" height="230" />
+<img src="/../../../assets/lstm-recurrent-networks/backward_diagram.png" width="550" height="230" />
 </div>
 
 Basically we want first to know how should I change the scores in order to reduce my loss. The rate of change of the loss with regards to the change of the scores is given by derivative *dscores*. To understand the formula of dscores above, please see [this notes](http://cs231n.github.io/neural-networks-case-study/#grad)
@@ -151,13 +151,13 @@ Basically we want first to know how should I change the scores in order to reduc
 But still, we cannot just change the scores. We can just change our weights Why, by, Wx, ... So, we backpropagate the scores derivative through each operation we did on the forward pass until we get the derivatives of our weights. First we backpropagate through the dense layer, which gives us the derivatives of our weights Why and by, as well as the derivative of the hidden states dh_states. The equations are a simple example of backpropagation (again, more info on [CS231n](http://cs231n.github.io/optimization-2/)), and they correspond to this backpropagation diagram:
 
 <div class="post_img">
-<img src="../../../assets/lstm-recurrent-networks/back_affine.png" width="350" height="180"  />
+<img src="/../../../assets/lstm-recurrent-networks/back_affine.png" width="350" height="180"  />
 </div>
 
 Now, the same happens with dh_state; we cannot directly change it and must backpropagate to get the gradients of our weights Wh, Wx, and b. These operations are contained in `lstm_step_backward()`, and this time is somewhat more complex. The code is not by itself self explanatory, I think. So, probably the backpropagation diagram will be more illustrative:
 
 <div class="post_img">
-<img src="../../../assets/lstm-recurrent-networks/back_lstm.png" width="900" height="290"  />
+<img src="/../../../assets/lstm-recurrent-networks/back_lstm.png" width="900" height="290"  />
 </div>
 
 ## Gradient update
@@ -172,7 +172,7 @@ After we have all the derivatives we can do the gradient update. Here I apply a 
 We could have applied other rules to the gradient descent that usually work better. The different ways to apply gradient descent are called optimizers. But for educational purposes gradient descent is simple and works good enough here. We repeat this small gradient descent step over and over, updating our model parameters on each loop, until by minimizing our loss we get better and better results. The full process until here can be represented as:
 
 <div class="post_img">
-<img src="../../../assets/lstm-recurrent-networks/sgd_diagram.png" width="550" height="300" />
+<img src="/../../../assets/lstm-recurrent-networks/sgd_diagram.png" width="550" height="300" />
 </div>
 
 ## Test
@@ -180,7 +180,7 @@ We could have applied other rules to the gradient descent that usually work bett
 Of course we want to test our network and see what type of texts can it deliver. This is going to be easy. We just run the forward pass, with a random input. When we got the probabilities for the next characters, instead of comparing with any target, we'll just pick a choice based on the probabilities. Then, if we want to sample a full text, we give this output as input for the next loop, and sample as many characters as we like.
 
 <div class="post_img">
-<img src="../../../assets/lstm-recurrent-networks/test_diagram.png" width="550" height="143" />
+<img src="/../../../assets/lstm-recurrent-networks/test_diagram.png" width="550" height="143" />
 </div>
 
 This logic is contained in the `sample()` function:
