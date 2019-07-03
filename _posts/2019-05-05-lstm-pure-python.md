@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "LSTM in pure Python"
+title: "Implementation of a LSTM in pure Python"
 excerpt: "Implementation of a LSTM recurrent neural network using only Python and numpy."
 description: "Implementation of a LSTM recurrent neural network using only Python and numpy."
 author: "Jose"
