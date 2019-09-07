@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Udacity Nanodegree Capstone Project"
-excerpt: "Final project for the Self-Driving Car Nanodegree. Uses ROS (Robot Operating System) to program a autonomous car integrating image recognition with a pre-trained object detection model, Path Planning, and Movement Control"
+excerpt: "Final project for the Self-Driving Car Nanodegree. Uses ROS (Robot Operating System) to program a autonomous car integrating Image Recognition with a pre-trained Object Detection model, Path Planning, and Movement Control"
 author: "Jose"
 date: 2019-09-07
 ---
