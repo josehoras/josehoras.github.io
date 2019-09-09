@@ -146,6 +146,8 @@ The calculated throttle, brake, and steering are published to the topics:
 
 ## 4. Datasets
 
+(By [Andrei Sasinovich](https://www.linkedin.com/in/andrei-sasinovich/))
+
 After we got our dataset of images from the simulator and rosbag we started to think how to label it. The first option was label it by hand but when we look into the number of collected images (more than 1k) we decided that it’s not a good way as we have other work to do 😊
 
 We decided to generate a dataset. We cut by 10-15 traffic lights of each color.
