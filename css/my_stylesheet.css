@@ -13,7 +13,7 @@ body{
 
 a         { color: #005ACC; text-decoration: none; }
 a:hover   { color: #000; text-decoration: underline; }
-a:visited { color: #346593; }
+/*a:visited { color: #005ACC; }*/
 
 /* h1 { font-size: 100%; font-weight: 100; } */
 
@@ -70,6 +70,7 @@ a:visited { color: #346593; }
   padding: 10px 10px;
   margin-bottom: 30px;
   background: #fdfdfd;
+  /* #fdfdfd */
   opacity: 0.95;
   border: 3px solid #e8e8e8;
   border-radius: 20px;
@@ -113,7 +114,8 @@ a:visited { color: #346593; }
   padding-left: 25px;
 }
 .post-body blockquote {
-  border-left: 40px solid #e8e8e8;
+  border-left: 40px;
+  /*e8e8e8*/
   font-size: 18px;
   opacity: .6;
   letter-spacing: -1px;
@@ -122,7 +124,8 @@ a:visited { color: #346593; }
 
 .post-body pre, code {
   border: 1px solid #d5d5e9;
-  background-color: #EEF1FF;
+  background-color: #E4E6E8;
+  /*EEF1FF*/
   padding: 8px 12px;
 
   border-radius: 3px;
