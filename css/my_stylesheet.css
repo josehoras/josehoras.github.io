@@ -146,6 +146,11 @@ a:hover   { color: #000; text-decoration: underline; }
 
 .post-body ul, ol { margin-left: 2em;}
 
+.just-comments{
+  padding-top: 40px;
+  padding-left: 10px;
+}
+
 .post_img {
   color: #555;
   font-size: 14px;
