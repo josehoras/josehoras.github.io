@@ -4,7 +4,8 @@
 }
 
 body{
-  font-family: serif, 'CMS', 'Droid Sans', Helvetica, Arial, sans-serif;
+  font-family:  Helvetica, sans-serif;
+  /* 'CMS',  'Droid Sans', , sans-serif, Arial*/
   font-size: 20px;
   background: #fdfdfd;
   /* background: url("../../../assets/141px-Om_symbol.svg") repeat; */
@@ -85,27 +86,45 @@ a:visited { color: #346593; }
 }
 
 .post-header{padding-left: 10px;}
+
+.highlighter-rouge {
+  padding: 10px 30px;
+
+}
+
 .post-body {
   /* font-size: 25px; */
-  line-height: 24px;
+  line-height: 25px;
   padding-left: 10px;
   padding-top: 15px;
   text-align: justify;
 }
-.post-body > * { margin: 20px 0; }
+
+.post-body > * { margin: 10px 0; }
+
+.post-body h2 {
+  padding-top: 15px;
+}
+.post-body h3 {
+  padding-top: 10px;
+}
+
+.post-body ol {
+  padding-left: 25px;
+}
 .post-body blockquote {
-  border-left: 4px solid #e8e8e8;
-  padding-left: 20px;
+  border-left: 40px solid #e8e8e8;
   font-size: 18px;
   opacity: .6;
   letter-spacing: -1px;
   font-style: italic;
-  margin: 30px 0;
 }
+
 .post-body pre, code {
   border: 1px solid #d5d5e9;
   background-color: #EEF1FF;
   padding: 8px 12px;
+
   border-radius: 3px;
   font-size: 15px;
   overflow:auto;
@@ -113,6 +132,7 @@ a:visited { color: #346593; }
 
 .post-body code {
   padding: 1px 3px;
+
 }
 
 .post-body pre code {
