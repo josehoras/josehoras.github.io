@@ -112,23 +112,21 @@ Before explaining how we do the sampling I should mention that Keras callbacks w
 
 ## Test
 
-Now, the method we use to sample a new text is the following. We input to the model a single character, and the model will make a prediction of the probabilities for each character in the dictionary to be the next one after this input. We choose our next character based on this prediction, which we save as part of the text we are building. This character will be passed to the model again, that will generate another prediction. And so the loop the number of characters we want for our text.
+Now, the method we use to sample a new text is the following. We input to the model a single character, and the model will make a prediction of the probabilities for each character in the dictionary to be the next one after this input. We choose our next character based on this prediction, which we save as part of the text we are building. This character will be passed to the model again, that will generate another prediction. In this way, we loop over the number of characters we want for our text.
 
-But this process still lack one important component. Doing as just explained each character will be predicted based on one input character. But the power of the recursive neural networks is to take into account the history of all previous characters to make its prediction. To do this the network saves two internal states (in a LSTM, just one in a regular RNN). These state will change on each loop iteration and, somehow, will keep the relevant information of all characters that the network has seen so far. So, to make the prediction we need to pass not just the last character, but also these two states for the network to know what has been going on so far.
+But this process still lacks one important component. Doing as just explained each character will be predicted based on one input character. But the power of the recursive neural networks is to take into account the history of all previous characters to make its prediction. To do this the network saves two internal states (in a LSTM, just one in a regular RNN). These states will change on each loop iteration and, somehow, will keep the relevant information of all characters that the network has seen so far. So, to make the prediction we need to pass not just the last character, but also these two states for the network to know what has been going on so far.
 
-This two states are the reason we define a second model for testing. In our first model we where passing long character sequences for training. Keras kept track of these states internally as it passed the sequence through the network. We didn't need to explicitly worry about them, but now we want them as output of each prediction step to pass it forward in the next prediction step. We need these states to be defined as input and outputs. This second model look like this:
+This two states are the reason we define a second model for testing. In our first model we where passing long character sequences for training. Keras kept track of these states internally as it passed the sequence through the network. We didn't need to explicitly worry about them, but now we want them as output of each prediction step to pass it forward into the next prediction step. We need these states to be defined as input and outputs. This second model look like this:
 
 ```
 state_input_h = Input(shape=(1, hidden_dim))
 state_input_c = Input(shape=(1, hidden_dim))
-states_inputs = [state_input_h, state_input_c]
 outputs, state_h, state_c = lstm_layer(inputs, initial_state=[state_input_h, state_input_c])
-states = [state_h, state_c]
 pred_outputs = dense_layer(outputs)
 pred_model = Model(inputs=[inputs, state_input_h, state_input_c], outputs=[pred_outputs, state_h, state_c])
 ```
 
-It looks similar to a new model definition, but if you pay attention we used the layers that we defined in our first model, `lstm_layer`, and `dense_layer`. These layers will be modified (optimized) as we train. When we call this second model, `pre_model`, it will use the layer of the first model in their current state, partially optimized by the training routine. So, as we have defined it, the second model is basically the first one arranged in a way that makes its internal states explicit as inputs and outputs.
+It looks similar to a new model definition, but if you pay attention we used the layers that we defined in our first model, `lstm_layer`, and `dense_layer`. These layers will be modified (optimized) as we train. When we call this second model, `pred_model`, it will use the layer of the first model in their current state, partially optimized by the training routine. So, as we have defined it, the second model is basically the first one arranged in a way that makes its internal states explicit as inputs and outputs.
 
 Now, the way we use this model is encapsulated in the `test()` function:
 

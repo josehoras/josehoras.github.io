@@ -47,7 +47,7 @@ So, in our case we specify (seq_length, vocab_size) and pass a batch of (seq_len
 
 ## Model architecture
 
-After having cleared what kind of inputs we pass to our model, we can look without further delay at the model itself, defined in `keras-lstm-char.py`. Our model is composed of:
+After having cleared what kind of inputs we pass to our model, we can look without further delay at the model itself, defined in `tf-lstm-char.py`. Our model is composed of:
 
 - one LSTM layer, that process sequentially the temporal input series (our characters sequence), and outputs a sequence of hidden states
 - one dense layer, that transforms each hidden state into a vector of scores or logits for each character in our dictionary
@@ -88,9 +88,9 @@ probabilities = tf.nn.softmax(logits, name="probabilities")
 
 ```
 
-Now, this is the step where I was not careful the with dimensions and took me a while to debug. In the recurrent operation command, "dynamic_rnn()", you have the option `time_mayor=True`, that tell TensorFlow in the input "x" the first dimension will be the temporal sequence, instead of the batch size. If you pass your input in the format (batch_size, seq_length, vocab_size), you have to set `time_mayor=False`, which is the default actually...
+Now, this is the step where I was not careful the with dimensions and took me a while to debug. In the recurrent operation command, "dynamic_rnn()", you have the option `time_mayor=True`. This tells TensorFlow that the first dimension in the input "x"  will be the temporal sequence, instead of the batch size. If you pass your input in the format (batch_size, seq_length, vocab_size), you have to set `time_mayor=False`, which is the default actually...
 
-The LSTM layer output is a sequence of states as long as our input sequence. Each of these states should predict the following character. These states are the input to the dense layer. We will now get rid of the batch dimension, that we know is only one. We collapse that dimension passing `h_states[:, 0, :]`.
+The LSTM layer output `h_states` is a sequence of states as long as our input sequence. Each of these states should predict the following character. These states are the input to the dense layer. We will now get rid of the batch dimension, as we know it is only one. We collapse that dimension by passing `h_states[:, 0, :]`.
 
 We express these scores in probabilities, that is, we normalize the series of scores so that their sum is equal to one, with the softmax function.
 
