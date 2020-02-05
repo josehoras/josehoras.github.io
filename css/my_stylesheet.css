@@ -25,7 +25,6 @@ a:hover   { color: #000; text-decoration: underline; }
 
 .header{
   padding: 10px;
-  /* height: 20px; */
   background: #F3F3F3;
   border-bottom: 1px solid #000;
   /* border-top: 4px solid #e8e8e8; */
@@ -35,11 +34,9 @@ a:hover   { color: #000; text-decoration: underline; }
 .header a:hover   { color: #2E3436; text-decoration: underline; }
 
 .in-container{
-  max-width: 900px;
-  /* border:solid; */
+  max-width: 650px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 20px;
   padding-top: 10px;
 }
 
@@ -88,13 +85,11 @@ a:hover   { color: #000; text-decoration: underline; }
 
 .post-header{padding-left: 10px;}
 
-.highlighter-rouge {
+/* .highlighter-rouge {
   padding: 10px 30px;
-
-}
+} */
 
 .post-body {
-  /* font-size: 25px; */
   line-height: 25px;
   padding-left: 10px;
   padding-top: 15px;
@@ -123,25 +118,25 @@ a:hover   { color: #000; text-decoration: underline; }
 }
 
 .post-body pre, code {
-  border: 1px solid #d5d5e9;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font-size: 13px;
+  line-height: 20px;
+  /* border: 3px solid #d5d5e9; */
   background-color: #E4E6E8;
   /*EEF1FF*/
-  padding: 8px 12px;
-
+  /* padding: 4px; */
   border-radius: 3px;
-  font-size: 15px;
   overflow:auto;
 }
 
 .post-body code {
-  padding: 1px 3px;
-
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
-.post-body pre code {
-  border: 0;
-  padding-right: 0;
-  padding-left: 0;
+.post-body pre {
+  padding: 10px 10px;
+  border: 1px solid #d5d5e9
 }
 
 .post-body ul, ol { margin-left: 2em;}
