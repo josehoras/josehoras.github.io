@@ -42,7 +42,7 @@ a:hover   { color: #000; text-decoration: underline; }
 
 .header-top{
   /* float: left; */
-  padding-left: 10px;
+  /* padding-left: 10px; */
   font-size: 40px;
   letter-spacing: -2px;
   display: inline;
@@ -83,7 +83,7 @@ a:hover   { color: #000; text-decoration: underline; }
   margin-top: 15px;
 }
 
-.post-header{padding-left: 10px;}
+/* .post-header{padding-left: 10px;} */
 
 /* .highlighter-rouge {
   padding: 10px 30px;
@@ -91,7 +91,7 @@ a:hover   { color: #000; text-decoration: underline; }
 
 .post-body {
   line-height: 25px;
-  padding-left: 10px;
+  /* padding-left: 10px; */
   padding-top: 15px;
   text-align: justify;
 }
