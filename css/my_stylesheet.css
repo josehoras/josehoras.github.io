@@ -42,11 +42,9 @@ a:hover   { color: #000; text-decoration: underline; }
 
 .header-top{
   /* float: left; */
-  /* padding-left: 10px; */
-  font-size: 40px;
+  font-size: 45px;
   letter-spacing: -2px;
   display: inline;
-  /* padding-left: 10px; */
 }
 .navigation{
   float: right;
