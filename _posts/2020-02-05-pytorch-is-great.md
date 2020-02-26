@@ -6,11 +6,11 @@ author: "Jose"
 date: 2020-02-05
 ---
 
-I have learned PyTorch recently and I just love it. And I am not the only one. PyTorch is the fastest growing deep learning framework. It is specially popular in NLP, it seems to me, which is the growing area in deep learning now after vision had its run a few years ago.  Last year, the CS224n course on NLP imparted by Christopher Manning switched to PyTorch. 
+I have found PyTorch while following the CS224n course on NLP imparted by Christopher Manning, and learning it has been a great experience. 
 
 There are several characteristics that make PyTorch so compelling. Using an imperative programming style, it feels very Pythonic and intuitive. It also features dynamic computation graphs, which provides more flexibility. 
 
-But honestly, at this point the feature I'm most excited about is the easy integration of GPU. You define your GPU with just one line (`device = torch.device("cuda:0")`) . At any time afterwards you can easily move data and variables to CPU or GPU as you see fit. Compared with all the fine-tuning I had to do to use my GPU in TensorFlow, that I extensively described [here](/../tensorflow-with-gpu-using-docker-and-pycharm/), this is bliss.
+But honestly, at this point the feature I'm most excited about is the easy integration of GPU. You define your GPU with just one line (`device = torch.device("cuda:0")`) . At any time afterwards you can easily move data and variables to CPU or GPU as you see fit. Compared with all the fine-tuning needed to use my GPU in TensorFlow, that I extensively described [here](/../tensorflow-with-gpu-using-docker-and-pycharm/), this is bliss.
 
 To showcase some of the advantages and ease of use, I will replicate here my favorite neural network: a char LSTM. Last year, I got deep into this architecture and implemented it in [Python](/../lstm-pure-python), [TensorFlow](/../lstm-in-tensorflow), and [Keras](/../lstm-in-keras), as I wanted to understand better both the LSTM and the different deep learning frameworks. It's only natural that I would go now and translate it to PyTorch.
 
@@ -35,7 +35,7 @@ The way PyTorch works, we will first define the following components:
 
 Then we'll put it all together to work in the training loop. 
 
-Finally, we will set up a function to [test](#test) our network and sample a text out of it that, hopefully, will resemble the style of the input text we feed into the network. In the examples below I'll use the full collection of Shakespeare works.
+Finally, we will set up a function to [test](#test) our network and sample a text out of it that, hopefully, will resemble the style of the input text we feed into the network. In the example below I'll use the full collection of Shakespeare works.
 
 ## Model
 
@@ -54,18 +54,15 @@ class char_lstm(nn.Module):
         self.lstm = nn.LSTM(self.vocab_size, hidden_size, n_layers, batch_first=False)
         self.linear = nn.Linear(hidden_size, vocab, bias=True)
 
-    def forward(self, input, h0=None, c0=None):
-        if h0==None or c0==None:
-            output, (hn, cn) = self.lstm(input)
-        else:
-            output, (hn, cn) = self.lstm(input, (h0, c0))
+    def forward(self, input, states_0=None):
+        output, (hn, cn) = self.lstm(input, states_0)
         scores = self.linear(output)
-        return scores, hn, cn
+        return scores, (hn, cn)
 ```
 
 Our model has just two layers, a recurrent LSTM and a Linear (feed forward) layer that takes the results of the LSTM and output scores for each step.
 
-The forward function just applies these two layers, and returns the scores for each character as well as the final hidden and cell states. There is a little of logic though, depending on the inputs given. If no hidden and cell states are given, the PyTorch LSTM layer initializes them to zero and goes on from there. This is fine the first time we call the function, but later we want to pass the final state values to the next train loop. This will be more important when we sample a text with the current weights to see how the network is doing.
+The forward function just applies these two layers, and returns the scores for each character as well as the final hidden and cell states.
 
 The model is an object that we will declare below
 
@@ -73,13 +70,13 @@ The model is an object that we will declare below
 model = char_lstm(vocab_size, hidden_dim, n_layers=n_layers).to(device)
 ```
 
-`vocab_size` is the length of our character dictionary, that is, the number of possible characters in the data. We will get this number in the Dataset function below. `hidden_dim` and `n_layers` are defined in the code before.
+`vocab_size` is the length of our character dictionary, that is, the number of possible characters in the data. We will get this number in the Dataset function below. `hidden_dim` and `n_layers` are defined hyperparameters.
 
 ## Dataset
 
 You can feed your data to your model in different ways, for example using a Python iterator. But PyTorch provides a convenient Dataset class for that. A dataset is represented by a regular Python class that inherits from the Dataset class. It has three main methods:
 
-- `__init__(self)`: Defines our data. The delivery of data will be provided in the next method, so you don't need to place all your data in memory here. In our case, we pass the file name where the data is. Our data is a big test file with all Shakespeare works. We also define some parameters to use in the next method
+- `__init__(self)`: Defines our data. The delivery of data will be provided in the next method, so you don't need to place all your data in memory here. In our case, we pass the file name where the data is. Our data is a big text file with all Shakespeare's works. We also define some parameters to use in the next method
 - `__getitem__(self, index)`: This method returns a tuple (feature, label) for the index element of the dataset. The DataLoader will use this method to fetch the wanted minibatches from the dataset. In our case, as we are training the model to predict the next character, the feature is the character at the given position, and the label will just be the next character.
 - `__len__(self)`: It returns the size of the entire dataset
 
@@ -114,9 +111,9 @@ class CustomDataset(Dataset):
 
 Some words on the `__getitem__(self, index)` method. Our raw data is just text, but we have to pre-process these text characters to a format that our model can use. Basically, as the model will do mathematical operations with the input, it expects numbers instead of letters. First we use our "character to index" dictionary, that assigns a number to each letter. But the model is expecting a [one_hot](https://pytorch.org/docs/stable/nn.functional.html#one-hot) encoded vector of `vocab_size` length. Furthermore, to compute gradients and whatnot, it wants this vector in a float format.
 
-Meanwhile, we will use the targets in the loss function described below. It turns out [this function](https://pytorch.org/docs/stable/nn.html#crossentropyloss) does not require one hot encoding. So, the corresponding number will suffice. The piece of logic in the dictionary index avoid the DataLoader to look for a character above the dataset length.
+Meanwhile, we will use the targets to compute the loss. It turns out [the loss function](https://pytorch.org/docs/stable/nn.html#crossentropyloss) we will use does not require one hot encoding. So, the corresponding number will suffice. The piece of logic in the dictionary index avoid the DataLoader to look for a character over the dataset length.
 
-It turns out that in my case, some parameters of my model are to be extracted from the text I choose. For instance, the vocabulary size, the number of possible characters, is not fixed but depends of the text in question. That is also the case for the dictionaries to convert from character to index and viceversa. To be able to use these parameters somewhere else in the program, I have also added a method `params(self)` that pass these parameters. 
+In this case, some parameters of my model are to be extracted from the text I choose. For instance, the vocabulary size, the number of possible characters, is not fixed but depends of the text in question. That is also the case for the dictionaries to convert from character to index and viceversa. To be able to use these parameters somewhere else in the program, I have also added a method `params(self)` that passes over these parameters. 
 
 Remember, this is only the definition of our dataset object. Next, in the main body of our program, we instantiate this object and define the data loader function.
 
@@ -133,13 +130,11 @@ Until that we have just defined and instantiate our dataset. Now it is ready to 
 
 PyTorch has defined several loss functions that you can use. You can review them in the [official documentation](https://pytorch.org/docs/stable/nn.html). I pick the function [CrossEntropyLoss](https://pytorch.org/docs/stable/nn.html#crossentropyloss) that according to the documentation "combines nn.LogSoftmax() and nn.NLLLoss() in one single class". 
 
-This means that the function applies Softmax to the scores we get out of the model, and then compare these probabilities with the labels to compute our loss. Thus, in our scheme above, we go from scores to loss. First the loss function is defined
+This means that the function applies Softmax to the scores we get out of the model, and then compare these probabilities with the labels to compute our loss. Thus, in our scheme above, we go from scores to loss. Here we just define the loss function that we later use in the training loop.
 
 ```
 loss_fn = nn.CrossEntropyLoss()
 ```
-
-That we later use in the main training loop.
 
 ## Optimizer
 
@@ -153,31 +148,47 @@ optimizer = Adam(model.parameters(), lr=lr)
 
 ## Training loop
 
-Now is when all elements we defined (model, data loader, loss function, and optimization algorithm) come into use to train our model.
+Here is where all elements we defined (model, data loader, loss function, and optimization algorithm) come into use to train our model.
 
 ```
+# Initialize initial hidden and cell state
+h = torch.zeros(n_layers, 1, hidden_dim).to(device)
+c = torch.zeros(n_layers, 1, hidden_dim).to(device)
+states = (h, c)
+
 for inputs, targets in train_loader:
 
     # Forward run the model and get predictions
-    scores, h, c = model(inputs, (h, c))
-
-    # Compute the loss
+    scores, (h, c) = model(inputs, states)
+    states = (h.detach(), c.detach())
     loss = loss_fn(scores.squeeze(dim=1), targets.squeeze(dim=1))
 
-    # Backpropagate the loss, get the gradients, and update parameters
+    # Backpropagate the loss and update parameters
     loss.backward()
     optimizer.step()
     optimizer.zero_grad()
 ```
-By this point I hope it is easy to see how the commands in the loop follow closely the training steps pictured in the scheme at the top of the post.
- 
-First we get a set of inputs and targets out of our dataset. This are basically sequences of text shifted one character, of lentgh `seq_length`, and pre-processed in the right way.
 
-Next we feed the input to the network together with the hidden and cell states (h, c), by simply calling the model. At the first loop these states are initialized to zero, and then we keep on passing the last states from the previous loop. The results are the scores, that is, a list as long as `seq_length`, each element being a list of length `vocab_size` that gives a measure of the probability of each character to be the next one. To obtain the normalized probability we should use softmax, but this step is automatically included in the loss function.
+The job of the training loop is:
+- get a batch of data
+- pass the inputs through the model obtaining the target predictions
+- compute the loss of these predictions compared to the real target
+- backpropagate the loss to the model parameters
+- update these parameters minimizing the loss
+
+And of course, do this over and over again until the models gets good at predicting the target characters.
+
+Before starting the loop, we initialize the LSTM states to zero.
+
+The training loop itself is defined by the DataLoader, and it will go once over all the data in our DataSet. 
+
+Next we feed the input to the network, together with the hidden and cell states, by simply calling the model. The resulting scores assign for each prediction a list of length `vocab_size` with a measure of the probability of each character in the vocabulary to be chosen the next one. To obtain the normalized probability we should use softmax, but this step is automatically included in the loss function.
+
+We update the new states. We do not want to compute the loss over the states variable. This PyTorch could do in the first loop, but afterwards it will try to backpropagate all the way over to the first states. As we continually update the states, we loss the previous values on each loop and PyTorch will give an error trying to backpropagate over these. The method `.detach()` tells PyTorch to not compute the loss over the states.
 
 The scores and the targets are all the loss function needs to compute the loss. 
 
-Next we want to obtain the gradients of the loss with respect to the models weights. What would be a complex backpropagation routine, is the part where deep learning framework perform their magic. PyTorch delivers it wil the line `loss.backward()`.
+Next we want to obtain the gradients of the loss with respect to the model's weights. What would be a complex backpropagation routine, is the part where deep learning framework perform their magic. PyTorch delivers it wil the line `loss.backward()`.
 
 Finally we make one gradient descent step, updating the network parameters, just calling `optimizer.step()`. Before going to the next loop iteration we have to remember to zero the parameter gradients we just computed. Honestly, this is the only step where PyTorch kind of bugs me a little. It happens that in PyTorch gradients are accumulated. Thus, if we again backpropagate the gradients will sum to the previous ones. This sum will not be the correct gradient for that particular gradient descent step. To avoid that, we zero the gradients every time we apply an optimizer step.
 
