@@ -109,6 +109,17 @@ h3, h4, h5, h6 {
 	padding: 0.5em 0; /* 12px/24px * 2 (Use padding instead of margin to maintain proximity with paragraph) */
 }
 
+#post-page {
+	a {
+	 color: #005ACC;
+	 text-decoration: none;
+	}
+	a:hover {
+		color: #005ACC;
+		text-decoration: underline;
+	}
+}
+
 blockquote {
 	font-style: italic;
 	margin: 1.3334em; /* 24px/18px */
