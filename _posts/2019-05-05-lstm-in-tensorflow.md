@@ -158,7 +158,11 @@ First, we check for every 100 steps to print out information of the current stat
 
 Next we get the next batch of inputs and targets from the Python generator.
 
-And the magic happens in `sess.run([variables], feed_dict={...})`. The first input, [variables], tells TensorFlow the variables within our model that we want it to calculate. The second input, feed_dict={...}, are the inputs to feed the model, our placeholders above, inputs, targets, and initial states.
+And the magic happens in 
+```
+sess.run([variables], feed_dict={...})
+```
+The first input, [variables], tells TensorFlow the variables within our model that we want it to calculate. The second input, feed_dict={...}, are the inputs to feed the model, our placeholders above, inputs, targets, and initial states.
 
 On each loop, calculating "training" will mean that we perform a gradient descent step. The result of this will be reflected in the variable loss, that we also calculate and keep on "l" and the corresponding loss series "loss_hist", and "smooth_loss". We will also get the final state on this batch as output from `sess.run()`, and keep it on the "_current_state" variable to feed it back in the next loop cycle.
 
