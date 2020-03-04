@@ -1,14 +1,14 @@
 # Site settings
 title: Jose Horas blog
 description: Notes on Neural Nets
-url: "http://www.jacoporabolini.com/emerald"
+url: "https://josehoras.github.io/"
 author:
   name: "Jose Horas"
   email: "jose.horas@gmail.com"
   url: "https://josehoras.github.io/"
 
 # Build settings
-baseurl: /
+baseurl: "/"
 markdown: kramdown
 source: .
 destination: ./_site
