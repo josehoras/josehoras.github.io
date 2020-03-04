@@ -6,6 +6,7 @@
 body {
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.01em;
+	text-align: justify;
 }
 
 /*- Typography for medium and small screen, based on 16px font-size -*/
@@ -89,5 +90,39 @@ blockquote {
 		padding: 1.33334em 0; /* 24px/18px */
 	}
 }
+
+pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+		border: 1px solid #d5d5e9;
+    border-radius: 3px;
+}
+
+pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: initial;
+    border: 0;
+}
+
+code.highlighter-rouge {
+  padding: 2px 5px;
+	white-space: nowrap;
+  margin: 0;
+  font-size: 85%;
+  background-color: #f6f8fa;
+  border: 1px solid #d5d5e9;
+	border-radius: 3px;
+}
+
+
 
 }
