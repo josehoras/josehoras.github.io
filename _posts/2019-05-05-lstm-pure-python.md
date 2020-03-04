@@ -111,19 +111,27 @@ Don't worry now with all those variables we pass in the cache. They will be used
 
 The output of `lstm_forward()` is a sequence of hidden states. In the dense layer, each of these hidden states are transformed to a vector of scores of the same length as the input dimension, that is, one score for each possible output character.
 
-`scores = np.dot(h_states, Why.T) + by`
+```
+scores = np.dot(h_states, Why.T) + by
+```
 
 As these scores are not in the best format for the next steps, we normalize them with the softmax function, giving us the probability of each possible character.
 
-`probabilities = np.exp(scores) / np.sum(np.exp(scores), axis=1, keepdims=True)`
+```
+probabilities = np.exp(scores) / np.sum(np.exp(scores), axis=1, keepdims=True)
+```
 
 Finally, the cross-entropy values are the probability of the right character. For our sequence above ("First Citizen"), maybe the network gave the maximal probability to the character "p", but we take the smaller probability given to the correct option "i". The smaller the probability given to "i" the more wrong the network was. And the smaller the probability was, the bigger the -log operation will be.
 
-`cross_entropy = -np.log(probs[range(seq_length), np.argmax(targets, axis=1)])`
+```
+cross_entropy = -np.log(probs[range(seq_length), np.argmax(targets, axis=1)])
+```
 
 The total sum of these cross-entropy values give the total loss.
 
-`loss = np.sum(correct_logprobs) / seq_length`
+```
+loss = np.sum(correct_logprobs) / seq_length
+```
 
 So to minimize the loss, the probabilities given to the correct characters by the network should be bigger. We'll do that in the next steps.
 

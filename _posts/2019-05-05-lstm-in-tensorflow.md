@@ -194,7 +194,11 @@ def sample(sample_length, session):
 
 This time the input is a single encode character chosen randomly. Initial states are again initiated to zero and passed to the `sess.run()` as the "init_state" element in the "feed_dict={}". As we don't do any training here, the variables to calculate are the next states, and the probabilities vector to use to predict the next character. For the prediction we use the numpy function `random.choice()` that chooses elements in an array based on assigned probabilities. If we just choose the maximal probability the texts turn out with less variability and less interesting.
 
-Note that here we use the probabilities variable for the first time. We didn't really need it in the training because the function `tf.nn.softmax_cross_entropy_with_logits_v2()` takes the logits as inputs and calculates the softmax distribution itself. We defined it just to use it here. 
+Note that here we use the probabilities variable for the first time. We didn't really need it in the training because the function 
+```
+tf.nn.softmax_cross_entropy_with_logits_v2()
+``` 
+takes the logits as inputs and calculates the softmax distribution itself. We defined it just to use it here. 
 
 ## Summary
 

@@ -79,7 +79,9 @@ The second part tells Docker to use an image (or download it if it doesn’t exi
 ## Pull a TensorFlow Docker image
 Now that you have Docker, you can download, or pull, the images you need from the web. There are all kind of images uploaded to the official Docker repository (where you can also upload your own images). From there we pull the latest stable TensorFlow image with gpu support and python3. You can find more details [here](https://www.tensorflow.org/install/docker), or directly type the command:
 
-`~$ docker pull tensorflow/tensorflow:latest-gpu-py3`
+```
+~$ docker pull tensorflow/tensorflow:latest-gpu-py3
+```
 
 Now that we have the TensorFlow image and the Docker wrapper for CUDA 9.0, we will create another, personalized, image to run our program.
 
