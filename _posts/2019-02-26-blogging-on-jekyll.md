@@ -36,7 +36,11 @@ Next I had to put some formatting with a CSS file. This file just refers to each
 
 Finally just placed my [first post]({{site.posts.last.url}}) on the _**_posts**_ folder and integrate on index.thml using [Liquid](https://jekyllrb.com/docs/liquid/) syntax and tags. You can just copy some examples from the documentation to understand it. For example 
 
-{% raw %}`{% for post in site.posts %}...{% endfor %}`{% endraw %} 
+{% raw %}
+```
+{% for post in site.posts %}...{% endfor %}
+```
+{% endraw %} 
 
 defines a loop over all posts you have in your _**_posts**_ folder. To include content use double brackets, like  {% raw %}`{{post.url}}`, or `{{post.title}}`{% endraw %}.
 
