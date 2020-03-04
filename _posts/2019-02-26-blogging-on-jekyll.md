@@ -34,7 +34,11 @@ I began by creating the index.html file in the root of your project's folder. Af
 
 Next I had to put some formatting with a CSS file. This file just refers to each element on your index.html and defines the way you want that element to show on the browser. Things like font style, size, colors... The basics of it can be also learned quickly with a starting tutorial. But I have to admit that I also learned a lot by inspecting the format of my favourite blogs using the browser's "Inspect" tool and copying, or _"versioning"_, some of it.
 
-Finally just placed my [first post]({{site.posts.last.url}}) on the _**_posts**_ folder and integrate on index.thml using [Liquid](https://jekyllrb.com/docs/liquid/) syntax and tags. You can just copy some examples from the documentation to understand it. For example {% raw %}`{% for post in site.posts %}...{% endfor %}`{% endraw %} defines a loop over all posts you have in your _**_posts**_ folder. To include content use double brackets, like  {% raw %}`{{post.url}}`, or `{{post.title}}`{% endraw %}.
+Finally just placed my [first post]({{site.posts.last.url}}) on the _**_posts** _ folder and integrate on index.thml using [Liquid](https://jekyllrb.com/docs/liquid/) syntax and tags. You can just copy some examples from the documentation to understand it. For example 
+```
+{% for post in site.posts %}...{% endfor %}
+``` 
+defines a loop over all posts you have in your _**_posts**_ folder. To include content use double brackets, like  {% raw %}`{{post.url}}`, or `{{post.title}}`{% endraw %}.
 
 As the content increases you should keep the Jekyll [directory structure](https://jekyllrb.com/docs/structure/) to keep your site modular and well organized. I have already placed some content in the _**assets**_ and _**_layouts**_ folders. But the simple steps above are enough to start posting with Jekyll.
 
