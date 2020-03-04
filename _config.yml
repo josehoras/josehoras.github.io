@@ -1,11 +1,38 @@
+# Site settings
 title: Jose Horas blog
 description: Notes on Neural Nets
-#excerpt: "Why I decided to blog in Jekyll on GitHub instead of WordPress."
-url: "https://josehoras.github.io/"
-#url: "Jose Horas"
-permalink: /:title/
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
+url: "http://www.jacoporabolini.com/emerald"
+author:
+  name: "Jose Horas"
+  email: "jose.horas@gmail.com"
+  url: "https://josehoras.github.io/"
+
+# Build settings
+baseurl: /
+markdown: kramdown
+source: .
+destination: ./_site
+permalink: /:title
+paginate: 8
+paginate_path: /page:num/
+
+# Default values
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Plugins
+gems:
   - jekyll-paginate
-  - jekyll-seo-tag
+
+# Custom variables
+version: "1.1.0"
+
+# Options
+custom_header: true
+custom_nav_footer: true
+reverse: false
