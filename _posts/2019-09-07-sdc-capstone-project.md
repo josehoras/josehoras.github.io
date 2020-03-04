@@ -203,11 +203,17 @@ On a high level, the steps to take are:
 
 3. Create a new directory ``tensorflow``
 
-4. Clone the entire [models GitHub repository](https://github.com/tensorflow/models) from the``tensorflow`` directory. 
+4. Clone the entire [models GitHub repository](https://github.com/tensorflow/models) from the ``tensorflow`` directory. 
 
-	```git clone https://github.com/tensorflow/models.git```
+	```
+	git clone https://github.com/tensorflow/models.git
+	```
 	
-	This will take 1.2 GB on disk, as it contains models for many different tasks (NLP, GAN, ResNet...). Our model is found in `/tensorflow/models/research/object_detection/`, and many of the commands below will be input from `/tensorflow/models/research/
+	This will take 1.2 GB on disk, as it contains models for many different tasks (NLP, GAN, ResNet...). Our model is found in 
+	```
+	/tensorflow/models/research/object_detection/
+	```
+	and many of the commands below will be input from `/tensorflow/models/research/
 
 5. Install COCO API
 	```
