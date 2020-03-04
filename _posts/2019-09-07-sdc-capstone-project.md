@@ -285,7 +285,10 @@ The `pipeline.config` file has five sections: model{...}, train_config{...}, tra
 	- Change `num_classes: 90` to the number of classes that we are going to train the model on. In our case these are the four described in our `label_map.pbtxt`, ('red', 'green', 'yellow', 'unknown')
 	- `max_detections_per_class: 100` and `max_total_detections: 300` to `max_detections_per_class: 10` and `max_total_detections: 10`
 - On train_config{...}:
-	- `fine_tune_checkpoint: "PATH_TO_BE_CONFIGURED/model.ckpt"` to the directory where you placed the pre-trained model
+	-  to the directory where you placed the pre-trained model:
+	```
+	fine	_tune_checkpoint: "PATH_TO_BE_CONFIGURED/model.ckpt"
+	```
 	- `num_steps: 200000` to `num_steps: 20000`
 - On eval_config{...}:
 	- Set `num_examples` to the number of images in your evaluation data
@@ -300,7 +303,13 @@ If you follow this tutorial, you will first set your paths to your local folders
  
 Training without a GPU will take really too long to be practical and, even though I have a GPU on my computer, I didn't figure out how to use it with this API. Anyway, running locally is useful to test your setup, as there are lots of thing that can go wrong and the latency when sending a work to the cloud can delay a lot your debugging.
 
-Training is done using the script `model_main.py` in `tensorflow/models/research/object_detection/`. The script needs the training and evaluation data, as well as the `pipeline.config`, as described above. You will send some parameters to the script in the command line. So, first set the following environment variables from the terminal.
+Training is done using the script `model_main.py` in 
+
+```
+tensorflow/models/research/object_detection/
+```
+
+The script needs the training and evaluation data, as well as the `pipeline.config`, as described above. You will send some parameters to the script in the command line. So, first set the following environment variables from the terminal.
 
 ```
 PIPELINE_CONFIG_PATH={path to pipeline config file}
@@ -389,7 +398,11 @@ After this, running a training work on the cloud is very similar to running it l
 
 You are now almost ready to test your fine-trained model! First download the new model in `gs://${MODEL_DIR}` to your computer. From this model you will create the frozen graph `frozen_inference_graph.pb` that will be the new input to the [Object Detection Demo](https://github.com/tensorflow/models/blob/master/research/object_detection/object_detection_tutorial.ipynb) Jupyter notebook.
 
-Exporting is done using the script `export_inference_graph.py` in `tensorflow/models/research/object_detection/`. This script also needs the following parameters to be sent in the command line.
+Exporting is done using the script `export_inference_graph.py` in 
+```
+tensorflow/models/research/object_detection/
+```
+This script also needs the following parameters to be sent in the command line.
 
 ```
 INPUT_TYPE=image_tensor
