@@ -1,38 +1,72 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134989025-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-134989025-1');
-    </script>
-    <meta charset="UTF-8">
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    >
-    <link href="/css/my_stylesheet.css" rel="stylesheet">
-    {% seo %}
-    <!--
-    <script async src="https://just-comments.com/w.js"></script>
-    -->
-  </head>
+<html>
 
-  <body>
-    <div class="wrapper">
-      {% include header.html %}
+{% include head.html %}
 
-      <div class="section">
-        <div class="in-container">
-          {{ content }}
+<body>
+	<div id="wrap">
+
+	  	<!-- Navigation -->
+	  	{% include menu.html %}
+
+    <!-- Icon menu -->
+	  <a {% if site.reverse == true %}id="nav-menu-left"{% else %}id="nav-menu"{% endif %}>
+	  	<div id="menu"></div>
+	  </a>
+
+      <!-- Header -->
+      {% if site.custom_header == true %}
+        {% include header-custom.html %}
+      {% else %}
+        {% include header.html %}
+      {% endif %}
+
+    <!-- Main content -->
+	  <div id="container">
+
+		<main>
+
+			{{ content }}
+
+	  </main>
+
+		  <!-- Pagination links -->
+      {% if paginator.total_pages > 1 %}
+        <div class="pagination">
+          {% if paginator.previous_page == 1 %}
+            <a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">&laquo;</a>
+          {% elsif paginator.previous_page%}
+            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">&laquo;</a>
+          {% else %}
+            <span class="page-item">&laquo;</span>
+          {% endif %}
+
+          {% for page in (1..paginator.total_pages) %}
+            {% if page == paginator.page %}
+              <span class="page-item">{{ page }}</span>
+            {% elsif page == 1 %}
+              <a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">{{ page }}</a>
+            {% else %}
+              <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" class="page-item">{{ page }}</a>
+            {% endif %}
+          {% endfor %}
+
+          {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">&raquo;</a>
+          {% else %}
+            <span class="page-item">&raquo;</span>
+          {% endif %}
         </div>
-      </div>
+        {% endif %}
 
-      {% include footer.html %}
-    </div>
+	  </div>
 
-  </body>
+	    <!-- Footer -->
+	    {% include footer-custom.html %}
+
+	    <!-- Script -->
+      {% include script.html %}
+
+	</div>
+</body>
 </html>

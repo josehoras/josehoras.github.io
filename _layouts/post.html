@@ -1,17 +1,18 @@
 ---
 layout: default
 ---
-<div class="post-header">
-  <h1>{{ page.title }}</h1>
-  <small>{{ page.date | date: "%-d %B %Y" }}</small>
-</div>
+<article id="post-page">
+	<h2>{{ page.title }}</h2>
+	<time datetime="{{ page.date | date_to_xmlschema }}" class="by-line">{{ page.date | date_to_string }}</time>
+	<div class="content">
 
-<div class="post-body">
-  {{content}}
-</div>
+		{{ content }}
+
+	</div>
+</article>
+
 <div id="disqus_thread"></div>
 <script>
-
 /**
 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
@@ -29,11 +30,3 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<!--
-<div class="just-comments" data-apikey="c8710d94-2dff-44c6-903f-c6cc735e955d"></div>
--->
-<!--
-{% if page.tags %}
-  <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
-{% endif %}
--->
