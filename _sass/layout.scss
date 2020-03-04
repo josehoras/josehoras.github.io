@@ -175,7 +175,9 @@ html, body {
       margin-bottom: 1.3334em;
     }
 	.content{
-		padding-top: 40px;
+		@media (min-width: 940px) {
+			padding-top: 40px;
+		}
 	}
   &:after {
   	display: block;
