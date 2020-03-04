@@ -174,7 +174,23 @@ html, body {
   @media (min-width: 940px) {
       margin-bottom: 1.3334em;
     }
+  &:after {
+  	display: block;
+    content: '';
+    width: 10rem;
+    height: 1px;
+    margin: 23px auto;
+    background-color: lighten($text-color, 70%);
+  }
 }
+
+#disqus_thread {
+	margin-bottom: 1.5em;
+  @media (min-width: 940px) {
+      margin-bottom: 1.3334em;
+    }
+}
+
 
 .post+.post:before {
     display: block;
@@ -184,15 +200,6 @@ html, body {
     margin: 10px auto;
     background-color: lighten($text-color, 70%);
   }
-
-	.post-body:after {
-	    display: block;
-	    content: '';
-	    width: 7rem;
-	    height: 1px;
-	    margin: 10px auto;
-	    background-color: lighten($text-color, 70%);
-	  }
 
 .by-line {
   display: block;
@@ -292,8 +299,9 @@ footer {
 	color: $background-color;
 	text-align: center;
 	position: absolute;
+	// position:sticky; bottom: 10px;
   width: 100%;
-  bottom: 1;
+  bottom: 0;
 }
 
 .footer a { color: $background-color;}
