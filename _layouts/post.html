@@ -7,6 +7,25 @@ layout: default
 	<div class="content">
 		{{ content }}
 	</div>
+
+  <p>
+    Tagged
+    {% for tag in page.tags %}
+    <a class="post" href="/tag/{{tag}}">#{{tag}}</a>{% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  </p>
+
+	{% for page in site.html_pages %}
+		<p>{{ page.url }}</p>
+	{% endfor %}
+	<p>-----------------------</p>
+	{% for page in site.pages %}
+		<p>{{ page.url }}</p>
+		<!-- {% if page.layout == "page" %}
+			<a href="{% if site.baseurl == "/" %}{{ page.url }}{% else %}{{ page.url | prepend: site.baseurl }}{% endif %}" title="{{ page.title }}">{{ page.title }}</a>
+		{% endif %} -->
+	{% endfor %}
+
 </article>
 
 {% if page.title != "About" %}
