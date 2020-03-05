@@ -1,12 +1,13 @@
-<nav {% if site.reverse == true %}id="nav-left"{% else %}id="nav"{% endif %}>
-	<div id="nav-list">
+<nav {% if site.reverse == true %}id="nav-left"{% else %}id="nav"{% endif %}
+			style="overflow-y:scroll">
+	<div id="nav-list" >
 		<a href="/">Home</a>
 
 		<!-- Nav pages -->
 
 		{% for page in site.html_pages %}
 			 {% if page.type == "tag_index" %}
-			 		<a href="{{ page.url }}" title="#{{ page.title }}">#{{ page.title }}</a>			 		
+			 		<a href="{{ page.url }}" title="#{{ page.title }}">#{{ page.title }}</a>
 			 {% endif %}
 		{% endfor %}
     <!-- Nav links -->
