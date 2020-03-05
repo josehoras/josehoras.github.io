@@ -2,6 +2,7 @@
 layout: post
 title: "PyTorch is great"
 excerpt: "Introduction to PyTorch using a char-LSTM example"
+tags: ["PyTorch", "LSTM"]
 author: "Jose"
 date: 2020-02-05
 ---

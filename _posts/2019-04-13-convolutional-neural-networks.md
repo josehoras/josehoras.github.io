@@ -2,6 +2,7 @@
 layout: post
 title: "Convolutional Neural Networks for Traffic Sign Recognition"
 excerpt: "My work on CNNs for the Udacity Nanodegree."
+tags: ["Image Recognition", "TensorFlow", "Udacity"]
 author: "Jose"
 date: 2019-04-13
 ---

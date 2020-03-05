@@ -3,6 +3,7 @@ layout: post
 title: "LSTM implementation in pure Python"
 excerpt: "Implementation of a LSTM recurrent neural network using only Python and numpy."
 description: "Implementation of a LSTM recurrent neural network using only Python and numpy."
+tags: ["LSTM"]
 author: "Jose"
 date: 2019-05-05
 ---

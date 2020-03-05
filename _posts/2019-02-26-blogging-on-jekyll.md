@@ -2,6 +2,7 @@
 layout: post
 title: "Blogging on Jekyll"
 excerpt: "Why I decided to blog in Jekyll on GitHub instead of WordPress."
+tags: ["Jekyll"]
 author: "Jose"
 date: 2019-02-26
 ---

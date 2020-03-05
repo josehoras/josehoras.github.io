@@ -2,6 +2,7 @@
 layout: post
 title: "Introduction to Neural Nets"
 excerpt: "The most simple explanation of neural nets I could come up with, focusing on the most fundamental concepts that neural nets are built on."
+tags: []
 author: "Jose"
 date: 2019-04-12
 ---

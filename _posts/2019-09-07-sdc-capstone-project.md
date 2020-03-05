@@ -2,6 +2,7 @@
 layout: post
 title: "Udacity Nanodegree Capstone Project"
 excerpt: "Final project for the Self-Driving Car Nanodegree. ROS system to control a car and recognize traffic lights from camera images."
+tags: ["Udacity", "TensorFlow", "Image Recognition", "ROS"]
 author: "Jose"
 date: 2019-09-07
 ---

@@ -2,6 +2,7 @@
 layout: post
 title: "Getting started"
 excerpt: "First post, just to practice."
+tags: []
 author: "Jose"
 date: 2019-02-17
 ---

@@ -2,6 +2,7 @@
 layout: post
 title: "TensorFlow with GPU using Docker (and PyCharm)"
 excerpt: "Where I describe all the non-trivial steps I took to have my GPU working."
+tags: ["TensorFlow", "Docker"]
 author: "Jose"
 date: 2019-03-11
 ---

@@ -2,6 +2,7 @@
 layout: post
 title: "Save and restore RNN / LSTM models in TensorFlow"
 excerpt: "How to save a model in TensorFlow using the Saver API (tf.train.Saver)"
+tags: ["LSTM", "TensorFlow"]
 author: "Jose"
 date: 2019-09-27
 ---
