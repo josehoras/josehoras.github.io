@@ -133,6 +133,7 @@ html, body {
 	margin:0 auto;
 	max-width: 730px;
 	padding: 0 1.5rem;
+	// background-color: #EAEAEB;
 }
 
 #header {
@@ -305,7 +306,15 @@ footer {
 #wrap {
 	min-height:100%;
 	position:relative;
-	// padding-bottom: 105px;
+	padding-bottom: 105px;
+	// height: 100%;
+	// overflow: hidden;
+	// background-color: #EAEAEB;
+}
+.noscroll {
+	height: 100%;
+  overflow: hidden;
+	// background-color: #EAEAEB;
 }
 
 .footer {
