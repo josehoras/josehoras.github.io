@@ -16,17 +16,17 @@ function toggle() {
 	  	  nav.className = "";
 	  	  button.className = "";
 	  	  site.className = "";
-				site.classList.toggle('noscroll', false);
+				// site.classList.toggle('noscroll', false);
 	  } else if (reverse !== null) {
 	  	  nav.className += "menu-open-left";
 	  	  button.className += "btn-close";
 	  	  site.className += "fixed";
-				site.classList.toggle('noscroll', true);
+				// site.classList.toggle('noscroll', true);
 	  } else {
 	  	  nav.className += "menu-open";
 	  	  button.className += "btn-close";
 	  	  site.className += "fixed";
-				site.classList.toggle('noscroll', true);
+				// site.classList.toggle('noscroll', true);
 	    }
 	}
 
