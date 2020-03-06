@@ -39,6 +39,8 @@ function toggle() {
 				if (window.innerWidth > 940) {
 					wid = (window.innerWidth - 742) * 0.5;
 					site.style.left = wid + 'px';
+				} else {
+					site.style.maxWidth = window.innerWidth - 12 + 'px';
 				}
 				offsetY = window.pageYOffset;
 				site.style.top = -offsetY + 'px';
