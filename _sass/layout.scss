@@ -119,42 +119,27 @@ html, body {
 }
 
 #wrap {
-	// min-height:100%;
-	// position:relative;
-	height: auto;
-	// padding-bottom: 105px;
-	// height: 100%;
-	// overflow: hidden;
-	background-color: #70ADCE;
+	position:relative;
+	min-height: 100%;
+	padding-bottom: 105px;
+	// background-color: #70ADCE;
 }
 
 /* Main content */
 
 .fixed {
-  position: fixed;
-  width: 100%;
+  // position: fixed;
+  height: 100%;
 	overflow: hidden;
-  position: static;
+  // position: static;
   @media (min-width: 940px) {
 		height: 100%;
 		overflow: hidden;
-    position: static;
+    // position: static;
   }
 }
 
-#container {
-	margin:0 auto;
-	max-width: 730px;
-	padding: 0 1.5rem;
-	background-color: #EAEAEB;
-	min-height:100%;
-	// position:relative;
-	// height: auto;
-	// min-height: 300px;
-}
-
 #header {
-	// text-align: left;
 	text-align: center;
   padding: 24px 0;
   position: relative;
@@ -163,23 +148,10 @@ html, body {
   	color: $text-color;
   	display: inline-block;
   }
-  img {
-  	max-height: 72px;
-  	margin: 0 auto;
-  	display: block;
-  }
   h1 {
   	font-family: 'Signika', sans-serif; //Emerald logo font
     font-weight: 600;
   }
-	// .navigation{
-	// 	float: right;
-	// 	padding-top: 15px;
-	// }
-	// .nav-item{
-	// 	padding-left: 20px;
-	// 	padding-right: 20px;
-	// }
   &:after {
   	display: block;
     content: '';
@@ -191,10 +163,39 @@ html, body {
 }
 
 /* Posts */
+#container {
+	position:relative;
+	margin:0 auto;
+	max-width: 730px;
+	padding: 0 1.5rem;
+	// background-color: #EAEAEB;
+}
 
 #posts {
   li {
     list-style-type: none;
+  }
+}
+.post+.post:before {
+    display: block;
+    content: '';
+    width: 7rem;
+    height: 1px;
+    margin: 10px auto;
+    background-color: lighten($text-color, 70%);
+}
+.by-line {
+  display: block;
+  color: lighten($text-color, 25%);
+  line-height: 1.5em; /* 24px/16px */
+  margin-bottom: 1.5em; /* 24px/16px */
+  font-weight: 200;
+  @media (min-width: 940px) {
+    display: block;
+    color: lighten($text-color, 25%);
+    line-height: 1.3334em; /* 24px/18px */
+    margin-bottom: 0em; /* 24px/18px */
+    font-weight: 200;
   }
 }
 
@@ -217,53 +218,12 @@ html, body {
     background-color: lighten($text-color, 70%);
   }
 }
-
 #disqus_thread {
 	margin-bottom: 1.5em;
   @media (min-width: 940px) {
       margin-bottom: 1.3334em;
     }
 }
-
-
-.post+.post:before {
-    display: block;
-    content: '';
-    width: 7rem;
-    height: 1px;
-    margin: 10px auto;
-    background-color: lighten($text-color, 70%);
-  }
-
-.by-line {
-  display: block;
-  color: lighten($text-color, 25%);
-  line-height: 1.5em; /* 24px/16px */
-  margin-bottom: 1.5em; /* 24px/16px */
-  font-weight: 200;
-  @media (min-width: 940px) {
-    display: block;
-    color: lighten($text-color, 25%);
-    line-height: 1.3334em; /* 24px/18px */
-    margin-bottom: 0em; /* 24px/18px */
-    font-weight: 200;
-  }
-}
-
-img {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 24px;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-      -ms-border-radius: 4px;
-          border-radius: 4px;
-}
-
-img[title="Emerald"] {
-    box-shadow: 0 2px 6px #ddd;
-  }
 
 code {
   color: lighten($text-color, 35%);
@@ -289,6 +249,7 @@ code {
 /* Paginator */
 
 .pagination {
+	position: relative;
   text-align: center;
   margin: 2.666668em;
   span {
@@ -313,19 +274,14 @@ code {
 
 /* Footer */
 
-footer {
-  // background-color: $main-color;
-  // color: $background-color;
-  text-align: center;
-  padding: 0.6667em 0;
-}
-
 .footer {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
 	padding: 25px 0;
+	text-align: center;
 	background-color: $main-color;
 	color: $background-color;
-  width: 100%;
-  bottom: 0;
 }
 
 .footer a {
