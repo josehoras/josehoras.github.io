@@ -5,7 +5,8 @@ module Jekyll
     def generate(site)
       tags = site.posts.docs.flat_map { |post| post.data['tags'] || [] }.to_set
       tags.each do |tag|
-        site.pages << TagPage.new(site, site.source, tag)
+        p = TagPage.new(site, site.source, tag)
+        site.pages << p
       end
     end
   end
@@ -18,6 +19,7 @@ module Jekyll
       @name = 'index.html'
 
       self.process(@name)
+     
       self.read_yaml(File.join(base, '_layouts'), 'tag.html')
       self.data['type'] = "tag_index"
       self.data['tag'] = tag
