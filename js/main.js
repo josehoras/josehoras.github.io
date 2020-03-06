@@ -41,7 +41,7 @@ function toggle() {
 					site.style.left = wid + 'px';
 				} else {
 					maxwid = site.style.maxWidth;
-					site.style.maxWidth = window.innerWidth - 12 + 'px';
+					site.style.maxWidth = window.innerWidth + 'px';
 				}
 				offsetY = window.pageYOffset;
 				site.style.top = -offsetY + 'px';
