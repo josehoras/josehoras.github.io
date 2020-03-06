@@ -19,32 +19,30 @@ function toggle() {
 	  	  button.className = "";
 	  	  button.style.right = '0px';
 
-				site.style.color = "#222222";
+				// site.style.color = "#222222";
 				site.style.top = '0px';
 				site.style.left = '0px'
 
-				// site.style.top = '0px';
-				// site.style.top = -offsetY + 'px';
-				// site.scrollTop(offsetY);
 				site.style.position = 'relative';
 				window.scrollTo({top: offsetY});
 
 	  } else if (reverse !== null) {
 	  	  nav.className += "menu-open-left";
 	  	  button.className += "btn-close";
-	  	  // site.className += "fixed";
 				site.style.color = "red";
 	  } else {
 	  	  nav.className += "menu-open";
 	  	  button.className += "btn-close";
-
 				button.style.right = '12px';
-				site.style.color = "blue";
 
+				// site.style.color = "blue";
+				if (window.innerWidth > 940) {
+					wid = (window.innerWidth - 742) * 0.5;
+					site.style.left = wid + 'px';
+				}
 				offsetY = window.pageYOffset;
 				site.style.top = -offsetY + 'px';
-				wid = (window.innerWidth - 742) * 0.5;
-				site.style.left = wid + 'px';
+
 				site.style.position = 'fixed';
 	    }
 	}
