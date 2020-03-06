@@ -3,12 +3,24 @@
 		<a href="/">Home</a>
 
 		<!-- Nav pages -->
-
-		{% for page in site.html_pages %}
+		<!-- Tags links -->
+		<!-- {% for page in site.html_pages %}
 			 {% if page.type == "tag_index" %}
 			 		<a href="{{ page.url }}" title="#{{ page.title }}">#{{ page.title }}</a>
 			 {% endif %}
-		{% endfor %}
+		{% endfor %} -->
+
+		<ul>
+		{% capture tags %}
+		  {% for tag in site.tags %}
+		    <li data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}">
+		       <a href="/{{ site.tag_page_dir }}/{{ tag[0] }}/index.html">#{{ tag[0] }} </a>
+		    </li>
+		  {% endfor %}
+		{% endcapture %}
+		{{ tags | split:'</li>' | sort | join:'</li>' }}
+		</ul>
+
     <!-- Nav links -->
 	  {% include link.html %}
 
