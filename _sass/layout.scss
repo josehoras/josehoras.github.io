@@ -119,12 +119,13 @@ html, body {
 }
 
 #wrap {
-	min-height:100%;
-	position:relative;
+	// min-height:100%;
+	// position:relative;
+	height: auto;
 	// padding-bottom: 105px;
 	// height: 100%;
 	// overflow: hidden;
-	// background-color: #EAEAEB;
+	background-color: #70ADCE;
 }
 
 /* Main content */
@@ -132,6 +133,8 @@ html, body {
 .fixed {
   position: fixed;
   width: 100%;
+	overflow: hidden;
+  position: static;
   @media (min-width: 940px) {
 		height: 100%;
 		overflow: hidden;
@@ -144,8 +147,10 @@ html, body {
 	max-width: 730px;
 	padding: 0 1.5rem;
 	background-color: #EAEAEB;
+	min-height:100%;
+	// position:relative;
 	// height: auto;
-	min-height: 300px;
+	// min-height: 300px;
 }
 
 #header {
