@@ -67,6 +67,7 @@ html, body {
 }
 
 #menu {
+	position: relative;
   height: 4px;
   width: 1.5em;
   background-color: lighten($text-color, 35%);
@@ -127,17 +128,27 @@ html, body {
 
 /* Main content */
 
-.fixed {
-  // position: fixed;
-  height: 100%;
-	overflow: hidden;
-  // position: static;
-  @media (min-width: 940px) {
-		height: 100%;
-		overflow: hidden;
-    // position: static;
-  }
-}
+// .fixed {
+// 	max-height: 110%;
+// 	position: fixed;
+// 	// background-color: rgba(0, 0, 0, 0.75);
+// 	// display: none;
+// 	top: 0;
+// 	right: 0;
+// 	bottom: 0;
+// 	left: 0;
+// 	overflow: hidden;
+//   // position: fixed;
+// 	// margin: 0;
+//   // max-height: 100px;
+// 	// overflow-y: hidden;
+//   // position: fixed;
+//   @media (min-width: 940px) {
+// 		// height: 100%;
+// 		// overflow: hidden;
+//     // position: static;
+//   }
+// }
 
 #header {
 	text-align: center;
