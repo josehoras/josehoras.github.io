@@ -14,5 +14,5 @@ More generally also, I will be journaling here about my current project learning
 
 More to come...
 <div class="post_img">
-<img src="/../../../assets/141px-Om_symbol.svg" width="150" height="150" />
+<img src="/../../../assets/Om_symbol.png" width="150" height="150" />
 </div>
