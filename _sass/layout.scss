@@ -250,6 +250,16 @@ code {
   background-color: lighten($background-color, 35%);
 }
 
+table {
+  border-collapse: collapse;
+  min-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+table, th, td {
+  border: 1px solid black;
+  padding: 1px 7px;
+}
 /* Set the vertical rhythm (and padding-left) for lists inside post content */
 
 .content ul, .content ol {
