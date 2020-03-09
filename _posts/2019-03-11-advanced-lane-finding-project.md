@@ -19,6 +19,8 @@ On this writeup, I go through a flow composed of the following steps:
 - [Calculate the road curvature and vehicle position on lane](#5-calculate-the-road-curvature-and-vehicle-position-on-lane)
 - [Plot the results onto the original image](#6-plot-the-results-onto-the-original-image)
 
+The code can be found on the [GitHub repository](https://github.com/josehoras/Advanced-Lane-Finding)
+
 ### Camera Calibration
 
  I use the graphics library OpenCV for camera calibration, and in further steps for lane recognition. OpenCV uses chessboard images as known pattern for calibration. Twenty figures of a chessboard in different angles are provided in the project.
