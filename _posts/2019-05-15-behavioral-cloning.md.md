@@ -4,7 +4,7 @@ title: "Behavioral Cloning"
 excerpt: "How to teach a neural net to drive"
 tags: ["Udacity", "Keras"]
 author: "Jose"
-date: 2019-03-11
+date: 2019-05-15
 ---
 
 The goal of this project is to let a neural net learn to drive by watching yourself drive in a simulator. This way the net will clone your behavior and take the same turns in the same situations as you did. 
