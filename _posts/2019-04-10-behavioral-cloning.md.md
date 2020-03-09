@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Behavioral Cloning"
-excerpt: "How to recognize road lanes by image processing and OpenCV"
+excerpt: "How to teach a neural net to drive"
 tags: ["Udacity", "Keras"]
 author: "Jose"
 date: 2019-03-11
