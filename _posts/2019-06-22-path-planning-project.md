@@ -19,7 +19,7 @@ The goals for the project are described in the [Project's Rubric](https://review
 - The car stays in its lane, except for the time between changing lanes.
 - The car is able to change lanes
 
-All the goals were fulfilled in the final implementation of the code, and the vehicle was able to drive for more than an hour without incidents. The code can be found on the [GitHub repository](https://github.com/josehoras/Path-Planning-Project/blob/master/writeup.md)
+All the goals were fulfilled in the final implementation of the code, and the vehicle was able to drive for more than an hour without incidents. The code can be found on the [GitHub repository](https://github.com/josehoras/Path-Planning-Project/)
 
 The main part of the code was implemented in `main.cpp`, while some functions where placed in `helpers.h` to improve readability and modularity to the code.
 
