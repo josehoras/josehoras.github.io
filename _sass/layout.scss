@@ -249,6 +249,13 @@ img, video {
 	font-style: italic;
 	text-align: center;
 }
+.inline_img > img {
+	display: inline-block;
+}
+.inline_img {
+	margin: 0 auto;
+	text-align: center;
+}
 code {
   color: lighten($text-color, 35%);
   background-color: lighten($background-color, 35%);
