@@ -187,13 +187,15 @@ html, body {
     list-style-type: none;
   }
 }
-.post+.post:before {
+.post {
+	&:after {
     display: block;
     content: '';
     width: 7rem;
     height: 1px;
     margin: 10px auto;
     background-color: lighten($text-color, 70%);
+	}
 }
 .by-line {
   display: block;
