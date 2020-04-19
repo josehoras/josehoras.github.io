@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Knowledge Distillation"
-excerpt: ""
+excerpt: "How to distill the knowledge from a big model into a tiny one"
 author: "Jose"
 date: 2020-02-12
 ---
