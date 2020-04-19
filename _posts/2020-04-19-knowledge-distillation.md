@@ -3,7 +3,7 @@ layout: post
 title: "Knowledge Distillation"
 excerpt: "How to distill the knowledge from a big model into a tiny one"
 author: "Jose"
-date: 2020-02-12
+date: 2020-04-19
 ---
 
 
