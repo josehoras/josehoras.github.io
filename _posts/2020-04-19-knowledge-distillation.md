@@ -185,13 +185,13 @@ for features, labels in tqdm(train_loader):
 	optimizer.step()
 ```
 
-Still keeping the old loop, but disregarding all train data and feeding instead random noise. After playing with T and learning rate I got:
+Still keeping the old loop, but disregarding all train data and feeding instead random noise. After playing with T and learning rate, I got:
 
 <p align="center">
 <img src="../assets/knowledge-distillation/acc_T=4_300k.png" width="100%"  style="border:none;">
 </p>
 
-Here the accuracy begins at 10%, which you would expect trying to guess a number from ten options. But then it rises quickly to close to 40%. I think this is remarkable. Just feeding random noise the student network figures out a function to achieve much more accuracy than purely random guesses. However, the accuracy stays there, despite me trying for a good while to obtain further improvement. But a different set of less wild random variations, like data augmentation, could probably deliver better results.
+Here the accuracy begins at 10%, which you would expect trying to guess a number out of ten options. But then it rises quickly to close to 40%. I think this is remarkable. Just feeding random noise the student network figures out a function to achieve much more accuracy than purely random guesses. However, the accuracy stays there, despite me trying for a good while to obtain further improvement. But a different set of less wild random variations, like data augmentation, could probably deliver better results.
 
 ## Conclusion
 
