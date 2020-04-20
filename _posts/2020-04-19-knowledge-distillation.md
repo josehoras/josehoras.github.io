@@ -14,13 +14,13 @@ A series of techniques have been developed to do this, like model compression. T
 
 ## The idea behind distillation
 
-The idea here is to "distil" the knowledge of a huge, fully trained neural network into a smaller one. This is done by a teacher - student process. On the student training, the teacher will make its own prediction to the data, and show it to the student net. The student learns not only from the labeled data, but also from the teacher high accurate predictions.
+The idea here is to "distill" the knowledge of a huge, fully trained neural network into a smaller one. This is done by a teacher - student process. On the student training, the teacher will make its own prediction to the data, and show it to the student net. The student learns not only from the labeled data, but also from the teacher high accurate predictions.
 
 You will ask where is the advantage in this process. The teacher predictions are just the labels, if the accuracy is high indeed. Maybe we can also get predictions from unlabeled data, and so expand into a kind of unsupervised learning. However, the teacher has more insights about the data that it can teach the student.
 
-I find the following a really cool idea, that takes advantage of a property that was always there, a most people just didn't realize they could use it.
+I find the following a really cool idea. It takes advantage of some additional information that was always there, and most people just didn't realize they could use it.
 
-A classification network usually outputs a list of probabilities for each class. The correct class will be the one with the highest probability, and that is the one we take. But the wrong classes have also probabilities assigned, and this is the information we can use.
+A classification network usually outputs a list of probabilities for each class. The correct class will be the one with the highest probability, and that is the one we take. But the wrong classes have also probabilities assigned, and this is the additional information we can use.
 
 See, when training a neural network we compare its results to the data labels. if represented in one-hot format, these are something like:
 
