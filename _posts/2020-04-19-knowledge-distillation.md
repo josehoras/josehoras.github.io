@@ -54,7 +54,7 @@ These soft target are compared with the student net's output to create a "distil
 
 ## Code example
 
-Next I want to take you through a very simple distillation example on MNIST. To practice yourself you can download the code from [GitHub](https://github.com/josehoras/Knowledge-Distillation) and play with this [Jupyter Notebook](https://github.com/josehoras/Knowledge-Distillation/blob/master/knowledge_distillation.ipynb).
+Next I want to take you through a very simple distillation example in PyTorch using MNIST. To practice yourself you can download the code from [GitHub](https://github.com/josehoras/Knowledge-Distillation) and play with this [Jupyter Notebook](https://github.com/josehoras/Knowledge-Distillation/blob/master/knowledge_distillation.ipynb).
 
 To reduce all complexity and just focus on the distillation part I will train the student network using only the teachers' soft targets. This means we renounce the additional accuracy obtained by training with the original data labels. I also limit myself to use linear feedforward networks, without convolutions, batch normalization, etc... We'll just employ a big linear network and a small linear network.
 
@@ -168,6 +168,33 @@ According to the original paper temperatures from 2.5 to 4 are good for this sma
 <img src="../assets/knowledge-distillation/summary_14epochs.png" width="100%"  style="border:none;">
 </p>
 
+## Playing around
 
+In the original paper, Hinton et al. mention how their student net is able to extract the knowledge from the teacher, even when some examples are not present in the training data. They omitted all examples of the digit 3 on training, and despite this the distilled model was able to classify correctly most of the 3s in the test set. 
+
+This makes sense if you consider that the net is not really realizing what a number is. It just replicates a mathematical function in the teacher net through backpropagation. That got me wondering what would happen in the extreme case where we just fed the networks random noise. The teacher net will still give a classification according to its inner mathematical function, and the student net will still try to replicate that function. So I slightly modified the code to:
+
+```
+for features, labels in tqdm(train_loader):
+	rnd_features = torch.rand(100, 784).to(device)
+	scores = small_model(rnd_features)
+	targets = big_model(rnd_features)
+	loss = my_loss(scores, targets, T= temp)
+	optimizer.zero_grad()
+	loss.backward()
+	optimizer.step()
+```
+
+Still keeping the old loop, but disregarding all train data and feeding instead random noise. After playing with T and learning rate I got:
+
+<p align="center">
+<img src="../assets/knowledge-distillation/acc_T=4_300k.png" width="100%"  style="border:none;">
+</p>
+
+Here the accuracy begins at 10%, which you would expect trying to guess a number from ten options. But then it rises quickly to close to 40%. I think this is remarkable. Just feeding random noise the student network figures out a function to achieve much more accuracy than purely random guesses. However, the accuracy stays there, despite me trying for a good while to obtain further improvement. But a different set of less wild random variations, like data augmentation, could probably deliver better results.
+
+## Conclusion
+
+We have seen how easy can it be to transfer the training from on big net to a small one using knowledge distillation. Once you have your big accurate network, this method has the advantage of not needing that much labeled data, and thus is easy and quick to implement.
 
 
